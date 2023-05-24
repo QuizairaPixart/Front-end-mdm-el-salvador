@@ -89,9 +89,9 @@ export default function SpeedDialMenu(props) {
     function openMenuSpeedDial() {
         $('#i-btnMenuSpeedDial').toggleClass('btnIRight');
         $('#i-btnMenuSpeedDial').toggleClass('btnILeft');   
-        $('.SpeedDialMenu_btnDial1__5z4zL').toggleClass(`${styles.openBtn}`);
-        $('.SpeedDialMenu_btnDial2__-pB0a').toggleClass(`${styles.openBtn}`);
-        $('.SpeedDialMenu_btnDial3__bkEln').toggleClass(`${styles.openBtn}`);
+        $('.SpeedDialMenu_btnDial1__Wr9UJ').toggleClass(`${styles.openBtn}`);
+        $('.SpeedDialMenu_btnDial2__Xbrzg').toggleClass(`${styles.openBtn}`);
+        $('.SpeedDialMenu_btnDial3__JEjLj').toggleClass(`${styles.openBtn}`);
         $('#btnDial4').toggleClass(`${styles.openBtn}`);
     };
 
