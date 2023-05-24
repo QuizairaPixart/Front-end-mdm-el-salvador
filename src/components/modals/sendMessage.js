@@ -8,7 +8,7 @@ import $ from "jquery";
 import "../../css/generals/paper.css";
 
 export default function SendMessages(props) {
-    
+    //console.log(props);
     const { id } = useParams();
     const userData = useSelector((state) => state.user);
     const user = useRef();
@@ -63,8 +63,8 @@ export default function SendMessages(props) {
                     finish: 5,
                 },
             },
-            devicesId: props.devices !== undefined ? props.devices : [],
-            groupsId:
+            devicesId: props.type === "dashboardGroup"? []: props.devices !== undefined ? props.devices : [],
+            groupsId: props.type === "dashboard"? []:
                 props.group !== undefined
                     ? props.group
                     : destiny === "Todos"
