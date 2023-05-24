@@ -126,7 +126,6 @@ export default function SpeedDialMenu(props) {
                     showIcon="pi pi-send" 
                     hideIcon="pi pi-send"
                     style={{top: "4rem"}}
-                    FabProps={{ id: "btnDial2" }}
                 />
                 <SpeedDial
                     model={itemsSecurity}
