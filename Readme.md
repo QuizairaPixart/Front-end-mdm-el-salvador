@@ -6,12 +6,6 @@ Tener instalado Node.js
 
 Ejecutar el comando "npm install" desde la terminal desde el directorio SRC
 
-[header]
-
-# Codigo fuente web frontend
-
-[section]
-
 # Conexiones
 
 Crear archivo .env dentro del directorio frontend con la siguiente estructura:
