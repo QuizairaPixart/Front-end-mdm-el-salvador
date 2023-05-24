@@ -88,10 +88,8 @@ export default function SpeedDialMenu(props) {
 
     function openMenuSpeedDial() {
         $('#i-btnMenuSpeedDial').toggleClass('btnIRight');
-        $('#i-btnMenuSpeedDial').toggleClass('btnILeft');   
-        $('.SpeedDialMenu_btnDial1__Wr9UJ').toggleClass(`${styles.openBtn}`);
-        $('.SpeedDialMenu_btnDial2__Xbrzg').toggleClass(`${styles.openBtn}`);
-        $('.SpeedDialMenu_btnDial3__JEjLj').toggleClass(`${styles.openBtn}`);
+        $('#i-btnMenuSpeedDial').toggleClass('btnILeft');
+        $('.p-speeddial-button').toggleClass(`${styles.openBtn}`);
         $('#btnDial4').toggleClass(`${styles.openBtn}`);
     };
 
@@ -128,6 +126,7 @@ export default function SpeedDialMenu(props) {
                     showIcon="pi pi-send" 
                     hideIcon="pi pi-send"
                     style={{top: "4rem"}}
+                    FabProps={{ id: "btnDial2" }}
                 />
                 <SpeedDial
                     model={itemsSecurity}
