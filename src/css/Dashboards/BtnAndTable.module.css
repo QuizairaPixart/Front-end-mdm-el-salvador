@@ -1,0 +1,20 @@
+.contenButtons{
+    display: flex;
+    align-items: center;
+    margin: 2rem 0 2rem 0;
+}
+
+.contenButtons Button{
+    background-color: black !important;
+    border-color: black !important;
+    margin-right: 1rem;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenButtons Button i{
+    margin-right: 0.5rem;
+    
+}

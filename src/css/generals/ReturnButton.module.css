@@ -1,0 +1,15 @@
+.arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center !important;
+    text-decoration: none;
+    background-color: #000000 !important;
+    margin-bottom: 0;
+}
+
+@media (max-width: 689px) {
+    .arrow {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}

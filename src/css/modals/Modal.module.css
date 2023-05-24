@@ -1,0 +1,23 @@
+.modalSwitch{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0px;
+}
+
+.spacePasswords{
+    display: none;
+}   
+
+.modalBody{
+    margin-top: 1rem;
+}
+
+.inputModal{
+    width: 18rem !important;
+}
+
+
+.inputUsers {
+    width: 100% !important;
+    border: 1px solid var(--gray-shadow-color) !important; 
+}

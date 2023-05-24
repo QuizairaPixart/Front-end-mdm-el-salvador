@@ -1,0 +1,29 @@
+.tableHead{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.tableHead Button {
+    background-color: #000000;
+}
+
+.p-paginator.p-component.p-paginator-bottom button{
+    min-width: 2rem ;
+}
+
+
+@media screen and (min-width: 688px) {
+    .p-paginator.p-component.p-paginator-bottom button{
+        min-width: 3rem ;
+    }
+}
+
+@media screen and (min-width: 992px) {
+
+}
+
+@media screen and (min-width: 1312px) {
+    
+}

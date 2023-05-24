@@ -1,0 +1,10 @@
+dockerfile
+./src
+./public
+/node_modules
+./package.json
+
+Dockerfile-nginx
+prod.Dockerfile
+dockerfile
+dockerfile.simple

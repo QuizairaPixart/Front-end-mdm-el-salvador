@@ -1,0 +1,33 @@
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gray-color);
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+} 
+
+.title {
+    font-size: 1.8rem;
+}
+
+.gestion{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+
+/* version Tablet 689px hasta 991px */
+@media (min-width: 689px) {
+
+    .header {
+        margin-bottom: 1rem;
+        padding: 1rem 0;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}

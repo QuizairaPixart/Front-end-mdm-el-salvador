@@ -1,0 +1,76 @@
+.bodyCard{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 25rem;
+    height: 14.5rem;
+    background-color: var(--dark-color);
+    border: solid;
+    border-image: linear-gradient(to right, rgba(0, 231, 231), rgba(0, 134, 196, 0.185)) 1;
+}
+
+/* .bodyCard:hover{
+    transform: scale(1.1);
+} */
+
+.bodyCard a{
+    text-decoration:none; font-weight: 700;
+    background: -webkit-linear-gradient(rgb(0, 238, 255), rgb(37, 106, 255));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bodyCard img{
+    width: 1.7rem;
+    height: 1.7rem;
+    margin-bottom: 5px;
+}
+
+/* version Tablet 689px hasta 991px */
+@media (min-width: 689px) {
+
+    .bodyCard {
+        padding: 2rem;
+        width: 32rem;
+        height: 16.5rem;
+    }
+
+    .bodyCard img {
+        width: 2rem;    
+        height: 2.1rem;
+        margin-bottom: 10px;
+    }
+
+    .bodyCard h4 {
+        font-size: 1.6rem;
+    }
+
+    .bodyCard p {
+        font-size: 1.2rem;
+    }
+}
+
+/* version Desktop 992px hasta 1311px */
+@media (min-width: 992px) {
+    
+}
+
+/* version Full-Desktop 992px hasta 1311px */
+@media (min-width: 1312px) {
+
+    .bodyCard {
+        padding: 2rem;
+        width: 25rem;
+        height: 16rem;
+    }
+
+    .bodyCard h4 {
+        font-size: 1.4rem;
+    }
+
+    .bodyCard p {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,265 @@
+.datatable-doc-demo .p-paginator .p-paginator-current {
+    margin-left: 0;
+}
+.datatable-doc-demo .p-progressbar {
+    height: 0.5rem;
+    background-color: var(--light-shadow-color);
+}
+.datatable-doc-demo .p-progressbar .p-progressbar-value {
+    background-color: var(--cyan-shadow-color);
+}
+.datatable-doc-demo .p-datepicker {
+    min-width: 25rem;
+}
+.datatable-doc-demo .p-datepicker td {
+    font-weight: 400;
+}
+.datatable-doc-demo .p-datatable.p-datatable-customers .p-datatable-header {
+    padding: 1rem 0.5rem;
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+/* .datatable-doc-demo .p-datatable.p-datatable-customers .p-paginator {
+    padding: 1rem;
+} */
+
+.datatable-doc-demo .p-datatable.p-datatable-customers .p-datatable-thead > tr > th {
+    text-align: left;
+}
+.datatable-doc-demo .p-datatable.p-datatable-customers .p-dropdown-label:not(.p-placeholder) {
+    text-transform: uppercase;
+}
+.p-datatable .p-column-header-content{
+    justify-content: center;
+}
+.headerTable{
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerTableColumn{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headerTableColumn h3{
+    margin-bottom: 1rem;
+}
+
+.actionDash{
+    text-decoration: none;
+}
+
+#tableApps{
+    min-height: 35rem;
+}
+
+th.selectionChexbox .p-column-header-content{
+    display: none !important;
+}
+
+.p-inputtext {
+    width: 100%;
+    border: none !important;
+    border-bottom: 1px solid var(--dark-color) !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+    padding: 7px 7px 7px 45px !important;
+    height: 2.5rem !important;
+}
+
+.containerHeader{
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.containerHeader .buttonExtract {
+    flex-direction: row;
+}
+
+.p-input-icon-left{
+    width: 100%;
+    background-color: white;
+    margin-top: 0 !important;
+}
+
+.btn-white{
+    background-color: #D9D9D9 !important;
+    color: var(--dark-color) !important;
+    border-color: transparent !important;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight{
+    background: var(--gray-color) !important;  
+}
+
+.p-paginator button{
+    color: rgb(62, 62, 62) !important;
+    background: transparent !important;
+}
+
+.p-paginator button:hover{
+    background: rgba(195, 195, 195, 0.365) !important;
+}
+
+.p-button.p-button-icon-only.p-button-rounded{
+    background-color: var(--gray-light-color) !important;
+    color: var(--dark-color) !important;
+    border-color: transparent !important;
+}
+
+button.p-button.p-component.p-speeddial-button.p-button-rounded.p-speeddial-rotate.p-button-danger.p-button-icon-only {
+    width: 3rem;
+    height: 3rem;
+}
+
+.p-dropdown-panel{
+    z-index: 1100 !important;
+}
+
+.p-input-icon-left, .p-input-icon-right {
+    position: relative;
+    display: inline-block;
+    margin-top: 0.6rem;
+}
+
+.datatable-doc-demo .p-datatable.p-datatable-customers .p-paginator .p-paginator-pages {
+    padding: 0.1rem;
+} 
+
+.datatable-doc-demo .p-datatable.p-datatable-customers .p-paginator .p-paginator-pages .p-paginator-page {
+    background-color: var(--dark-color);
+    background-color: transparent;
+    min-width: 2rem;
+    height: 2rem;
+    margin: 0.143rem;
+    transition: box-shadow 0.2s;
+    border-radius: 50%;
+} 
+
+.datatable-doc-demo .p-datatable.p-datatable-customers .p-paginator {
+    padding: 0.5rem;
+}
+
+.columns {
+    height: 5.5rem;
+}
+
+.p-button.p-button-secondary {
+    font-size: 14px !important;
+    height: 3rem !important;       
+}
+
+.rowsDropdown {
+    margin: 0 1.5rem 0 0.5rem;
+    height: 2.5rem;
+    width: 4rem;
+}
+
+.rowsDropdown .p-dropdown-trigger {
+    width: 1.5rem !important;
+}
+
+.filterDropdown {
+    width: 100%;
+    height: 2.5rem;
+    margin-top: 1rem;
+}
+
+.filterDropdown span.p-dropdown-label.p-inputtext, .rowsDropdown span.p-dropdown-label.p-inputtext{
+    padding: 7px !important;
+    text-align: center !important;
+    font-weight: bold;
+    text-transform: capitalize !important;
+}
+
+span.p-input-icon-left .pi.pi-search.search {
+    cursor: pointer; 
+    width: 40px; 
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #000000 !important;
+    color: white;
+    position: absolute;
+    top: 9px;
+    left: 0px;
+}
+
+.containerHeader .searchContainer {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    margin-top: 0.5rem;
+    flex-direction: column;
+}
+
+.containerHeader .containerButtons {
+    display: flex;
+    justify-content: space-between;
+} 
+
+.footerDataTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    text-align: center;
+}
+
+.buttonExtract .p-button.p-button-success:enabled:focus, .p-button.p-component.mr-2.p-button-icon-only:enabled:focus, .containerButtons .p-button.p-button-success:enabled:focus {
+    box-shadow: none;
+}
+
+.containerButtons .p-button.p-button-success.mr-2.uncheck {
+    margin-right: 0 !important;
+}
+
+/* version Tablet 689px hasta 991px */
+@media (min-width: 689px) {
+
+    .datatable-doc-demo .p-paginator .p-paginator-current {
+        margin-left: auto;
+    }
+
+    .datatable-doc-demo .p-datatable.p-datatable-customers .p-datatable-header {
+        padding: 1rem;
+    }
+    .datatable-doc-demo .p-datatable.p-datatable-customers .p-paginator {
+        padding: 1rem;
+    }
+
+    .datatable-doc-demo .p-datatable.p-datatable-customers .p-paginator .p-paginator-pages .p-paginator-page {
+        min-width: 3rem;
+        height: 3rem;
+        margin: 0.143rem;
+    } 
+
+    button.p-button.p-component.p-speeddial-button.p-button-rounded.p-speeddial-rotate.p-button-danger.p-button-icon-only {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .containerHeader .searchContainer {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center; 
+        margin-top: 0.5rem;
+    }
+
+    .filterDropdown {
+        width: 230px;
+        margin-top: 0;
+    }
+
+    .p-input-icon-left{
+        width: 75%;
+    }
+}

@@ -1,0 +1,289 @@
+.contentIndex {
+    background-color: var(--dark-color);
+    width: 100%;
+    height: 100%;
+}
+
+.bodyIndex {
+    color: var(--light-color);
+    background-image: url("../img/bakground.mdm.jpg");
+    background-size: cover;
+    padding-bottom: 1rem;
+}
+
+.contentTitles {
+    height: 350px;
+    padding-top: 90px;
+}
+
+.contentTitles .title {
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+
+.subtitle {
+    margin-top: 20px;
+    font-weight: 200;
+    font-size: 1.3rem;
+}
+
+.spaceCards {
+    width: 100%;
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1.5rem;
+}
+
+.cardsFunctions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    color: var(--light-color);
+}
+
+.sectionArquitect {
+    color: var(--light-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-color);
+    width: 100%;
+    height: fit-content;
+    margin-top: 2rem;
+}
+
+.encabezados h2 {
+    font-size: 3rem;
+    padding: 0.5rem 1.5rem;
+}
+
+.encabezados p {
+    font-size: 1.1rem;
+    padding: 0.5rem 1.5rem;
+}
+
+.imgArquitect img {
+    width: 100%;
+    padding: 0 0.5rem;
+}
+
+.sectionFunctions {
+    color: var(--light-color);
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.functions {
+    height: fit-content;
+}
+
+.functions h2 {
+    font-size: 45px;
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+}
+
+.functions ul {
+    list-style: none;
+    padding: 15px;
+}
+
+.functions li {
+    color: var(--light-color);
+    margin-bottom: 20px;
+}
+
+.functions i {
+    margin-right: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    background: -webkit-linear-gradient(rgb(0, 238, 255), rgb(37, 106, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.imgFunctions img {
+    width: 100%;
+    padding: 1rem 1.5rem;
+}
+
+
+/* version Tablet 689px hasta 991px */
+@media (min-width: 689px) {
+
+    .contentTitles {
+        padding-top: 110px;
+    }
+
+    .contentTitles .title {
+        font-size: 4.375rem;
+    }
+
+    .subtitle {
+        font-size: 1.8rem;
+    }
+
+    .spaceCards {
+        gap: 2.5rem;
+        margin-top: 4rem;
+    }
+
+    .cardsFunctions {
+        margin-top: 5rem;
+        justify-content: space-around;
+    }
+
+    .sectionArquitect {
+        padding: 4rem 6rem;
+    }
+
+    .encabezados h2 {
+        font-size: 3.1rem;
+    }
+
+    .encabezados p {
+        font-size: 1.3rem;
+        padding: 1.3rem 1.5rem;
+    }
+
+    .sectionFunctions {
+        padding: 5rem 10rem 0rem 6rem;
+        flex-direction: row;
+    }
+
+    .functions ul {
+        font-size: 1.2rem;
+    }
+}
+
+/* version Desktop 992px hasta 1311px */
+@media (min-width: 992px) {
+
+    .cardsFunctions {
+        margin-top: 8rem;
+        justify-content: space-evenly
+    }
+
+    .functions h2 {
+        font-size: 45px;
+        margin-bottom: 1rem;
+    }
+
+    .functions ul {
+        font-size: 1rem;
+    }
+
+    .img-functions {
+        height: -webkit-fit-content;
+        height: -moz-fit-content;
+        height: fit-content;
+        padding-top: 7rem;
+        width: 50%;
+    }
+
+    .imgFunctions img {
+        width: 120%;
+    }
+
+}
+
+/* version Full-Desktop 992px hasta 1311px */
+@media (min-width: 1312px) {
+
+    .bodyIndex {
+        padding-bottom: 6rem;
+    }
+
+    .contentTitles {
+        padding-top: 130px;
+    }
+
+    .contentTitles .title {
+        font-size: 4.5rem;
+    }
+
+    .subtitle {
+        margin-top: 20px;
+        font-weight: 200;
+    }
+
+    .spaceCards {
+        width: 100%;
+        margin-top: 6rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 2rem;
+    }
+
+    .cardsFunctions {
+        margin-top: 5rem;
+        justify-content: space-evenly
+    }
+
+    .encabezados {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5rem;
+    }
+
+    .encabezados p {
+        font-size: 1.2rem;
+    }
+
+    .encabezados h2 {
+        font-size: 2.8rem;
+    }
+
+    .imgArquitect {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10rem;
+    }
+
+    .imgArquitect img {
+        width: 100%;
+        max-width: 1440px;
+    }
+
+    .imgFunctions img {
+        width: 150%;
+    }
+
+    .functions {
+        height: fit-content;
+    }
+
+    .functions h2 {
+        font-size: 45px;
+        margin-bottom: 3rem;
+    }
+
+    .functions ul {
+        list-style: none;
+        padding: 15px;
+    }
+
+    .functions li {
+        color: var(--light-color);
+        margin-bottom: 20px;
+    }
+
+    .functions i {
+        margin-right: 4px;
+        text-decoration: none;
+        font-weight: 700;
+        background: -webkit-linear-gradient(rgb(0, 238, 255), rgb(37, 106, 255));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+}

@@ -1,0 +1,7 @@
+.main-footer{
+    height: 3rem !important;
+    background-color: var(--dark-color);
+    color: white;
+    text-align: center;
+}
+

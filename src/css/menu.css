@@ -1,0 +1,56 @@
+.nav-link{
+  color: var(--light-color) !important;
+}
+
+.mdm-logo{
+  height: 5rem;
+  background-image: url('../img/mdm-logo.svg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size:100%;
+  transition: background 0.75s ease-in-out ;
+
+}
+
+.dropdown :hover{
+  cursor: pointer;
+}
+
+[class*=sidebar-dark-]{
+  background-color: var(--dark-color);
+}
+
+.nav-link.active{
+  background-color: rgba(217, 217, 217, 0.224) !important;
+}
+
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover{
+  color: var(--light-color);
+}
+.sidebar-mini.vsc-initialized.sidebar-collapse div.mdm-logo{
+  background-image: url('../img/icon-mdm-bg-black.svg') ;
+  transition: background 0.75s ease-in-out   ;
+}
+.sidebar-mini.vsc-initialized.sidebar-collapse aside:hover div.mdm-logo{
+  background-image: url('../img/mdm-logo.svg') ;
+  transition: background 0.75s ease-in-out  ;
+}
+
+.footer-version {
+  color: white;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0.5rem;
+  width: 100%;
+}
+
+@media (max-width: 992px) {
+  .main-sidebar, .main-sidebar::before {
+    box-shadow: none !important;
+    margin-left: -250px;
+  }
+  .sidebar-open .main-sidebar, .sidebar-open .main-sidebar::before {
+    margin-left: 0;
+  }
+}

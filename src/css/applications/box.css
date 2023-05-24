@@ -1,0 +1,58 @@
+/* PickListDemo.css */
+.picklist-demo .boxApp .p-picklist-list-wrapper.p-picklist-source-wrapper, .p-picklist-list-wrapper.p-picklist-target-wrapper{
+    width: 45% !important;
+}
+
+.picklist-demo .product-item {
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    width: 100%;
+}
+
+.product-item p{
+    font-weight: bold;
+}
+
+.picklist-demo .product-item .product-list-detail {
+    flex: 1 1;
+}
+
+.picklist-demo .product-item .product-list-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.picklist-demo .product-item .product-category-icon {
+    vertical-align: middle;
+    margin-right: .5rem;
+}
+
+.picklist-demo .product-item .product-category {
+    vertical-align: middle;
+    line-height: 1;
+}
+
+@media screen and (max-width: 689px) {
+    .picklist-demo .product-item {
+        flex-wrap: wrap;
+    }
+
+    .picklist-demo .product-item .image-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .picklist-demo .product-item img {
+        margin: 0 0 1rem 0;
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 769px) {
+
+    .picklist-demo .boxApp .p-picklist-list-wrapper.p-picklist-source-wrapper, .p-picklist-list-wrapper.p-picklist-target-wrapper {
+        width: 100% !important;
+    }
+}

@@ -1,0 +1,13 @@
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+    height: 1.5rem;
+    border-radius: 25px;
+}
+
+.body p{
+    margin: 0 0 0 7px;
+    font-weight: 500;
+}

@@ -1,0 +1,22 @@
+.pic{
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pic:hover{
+    transform: scale(1.1);
+}
+
+.pic img{
+    width: 15rem;
+    height: 15rem;
+    margin: 1.5rem;
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

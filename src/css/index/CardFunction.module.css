@@ -1,0 +1,52 @@
+.contentCard {
+    min-width: 16rem;
+    max-width: 17rem;
+    height: 14rem;
+    background-color: var(--dark-color);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    margin: 1.5rem;
+    color: var(--light-color);
+    border: solid 1px var(--light-color);
+    padding-top: 30px;
+    border-radius: 20px;
+}
+
+.contentCard p {
+    margin-top: 1rem;
+    width: 85%;
+}
+
+/* version Tablet 689px hasta 991px */
+@media (min-width: 689px) {
+
+    .contentCard p {
+        font-size: 1.1rem;
+    }
+
+    .contentCard img {
+        width: 2.5rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* version Desktop 992px hasta 1311px */
+@media (min-width: 992px) {
+    .contentCard {
+        height: 15rem;
+        margin: 2.5rem 1.2rem;
+    }
+
+    .contentCard p {
+        font-size: 1rem;
+    }
+}
+
+/* version Full-Desktop 992px hasta 1311px */
+@media (min-width: 1312px) {
+    .contentCard {
+        max-width: 19rem;
+    }
+}

@@ -1,0 +1,17 @@
+.cardGroup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    min-height: 30rem !important;
+
+    margin: 1rem 0;
+}
+
+.cardGroup ul li {
+    font-weight: bold;
+    color: #4338CA !important;
+    background-color: #EEF2FF;
+    
+
+}

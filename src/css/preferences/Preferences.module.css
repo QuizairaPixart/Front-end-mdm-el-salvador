@@ -1,0 +1,218 @@
+.align {
+    display: flex;
+    align-items: center;
+}
+
+.labelPref {
+    font-size: 1rem !important;
+}
+
+.inputsPref{
+    width: 4rem;
+    margin-left: 1rem;
+    text-align: center;
+    padding: 0.3rem 0.5rem;
+    height: 2rem;
+    margin-left: auto;
+}
+
+.minutesPref {
+    margin-right: 0.5rem;
+}
+
+.switchPref {
+    margin-bottom: 0;
+    align-items: center;
+    margin-left: auto;
+}
+
+.boxInputLargePref{
+    height: 7rem !important; 
+    display: flex;
+    align-items: center;
+}
+
+.alignInputLarge {
+    display: flex;
+    margin-bottom: 0;
+    flex-direction: column;
+}
+
+.inputLarge, .inputTitleMessage {
+    width: 100%;
+    text-align: center;
+    padding: 0.3rem 0.5rem;
+    height: 2rem;
+}
+
+.boxMessage {
+    height: 11rem !important; 
+    display: flex;
+    align-items: center;
+}
+
+.alignMessage {
+    display: flex;
+    margin-bottom: 0;
+    flex-direction: column;
+}
+
+.message {
+    width: 100%;
+    height: 6rem;
+    resize: none;
+}
+
+.boxSliderPref {
+    height: 6.5rem !important; 
+}
+
+.alignSlider {
+    display: flex;
+    flex-direction: column;
+}
+
+.sliderPref{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.slider {
+    width: 100% !important;
+}
+
+.sliderPercentage{
+    margin-left: 1rem;
+}
+
+.dropdownPref{
+    height: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.dropdownPref span{
+    padding: 0.3rem;
+    font-weight: bold;
+}
+
+.btnEnd {
+    flex-direction: column;
+}
+
+.btnEnd Button {
+    background-color: #000000;
+}
+
+.selectLocked {
+    padding: 0 0.5rem;
+    height: 2rem;
+    font-weight: bold;
+}
+
+.buttonShow {
+    background-color: #212529;
+    color: white;
+    border-radius: 20%;
+    padding: 15px 10px;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    border: none;
+}
+
+@media screen and (min-width: 688px) {
+    .labelPref {
+        font-size: large !important;
+    }
+
+    .boxInputLargePref,  .boxSliderPref {
+        height: 5.5rem !important;
+    }
+
+    .boxMessage {
+        height: 10rem !important;
+    }
+
+    .alignInputLarge, .alignSlider {
+        flex-direction: row;
+    }
+
+    .alignMessage {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .inputLarge{
+        width: 330px;
+        margin-left: auto;
+    }
+
+    .message {
+        width: 320px;
+        margin-left: auto;
+    }
+
+    .slider {
+        width: 280px !important;
+    }
+
+    .sliderPref{
+        margin-left: auto;
+    }
+
+    .dropdownPref{
+        margin-left: auto;
+        width: 320px;
+    }
+
+    .selectLocked {
+        width: 320px;
+        margin-left: auto;
+    }
+
+    .inputTitleMessage {
+        width: 320px;
+        margin-left: auto;
+    }
+
+    .btnEnd {
+        flex-direction: row;
+    }
+}
+
+@media screen and (min-width: 992px) {
+
+    .inputLarge{
+        width: 380px;
+    }
+ 
+}
+
+@media screen and (min-width: 1312px) {
+    
+    .inputLarge{
+        width: 650px;
+    }
+
+    .slider {
+        width: 350px !important;
+    }
+
+    .dropdownPref{
+        width: 400px;
+    }
+
+    .selectLocked {
+        width: 500px;
+    }
+
+    .inputTitleMessage {
+        width: 500px;
+    }
+
+    .message {
+        width: 500px;
+    }
+}

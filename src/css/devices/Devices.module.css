@@ -1,0 +1,23 @@
+.btns {
+    flex-direction: row;
+}
+
+.btns Button{
+    background-color: black;
+    margin-left: 10px;
+}
+
+@media (max-width: 689px) {
+    .btns{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btns Button{
+        width: 100%;
+        margin-bottom: 1rem;
+        margin-left: 0;
+    }
+}

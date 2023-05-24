@@ -1,0 +1,158 @@
+.headerMain {
+    background-color: var(--dark-color);
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+}
+
+.headerMain .headerLinks {
+    display: none;
+}
+
+.headerMain .headerContacts {
+    display: none;
+}
+
+.spaceLeft ul {
+    display: none;
+}
+
+.navbar {
+    display: flex;
+    list-style: none;
+    justify-content: flex-start;
+    margin-bottom: 0px;
+}
+
+.fa-bars {
+    color: var(--gray-color) !important;
+
+}
+
+.navbar a {
+    color: var(--light-color);
+    text-decoration: none;
+    margin: 0px 6px;
+    font-size: 18px;
+}
+
+.navbar a:hover {
+    color: var(--sky-blue-color);
+}
+
+.contacts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contacts div {
+    color: var(--sky-blue-color);
+    margin-right: 25px;
+}
+
+.contacts h6 {
+    /* margin: 0; */
+    display: none;
+}
+
+.contacts span {
+    /* margin: 0; */
+    display: none;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.boton {
+    height: 2.5rem;
+}
+
+.modal {
+    margin-top: 65px;
+    width: 100%;
+    max-width: 280px;
+    position: absolute;
+    right: 0;
+}
+
+/* version Tablet 689px hasta 991px */
+@media (min-width: 689px) {
+
+    .modal {
+        max-width: 450px;
+    }
+
+}
+
+/* version Desktop 992px hasta 1311px */
+@media (min-width: 992px) {
+
+    .headerMain {
+        background-color: var(--dark-color);
+        display: flex;
+        justify-content: space-evenly;
+        padding: 0.3rem;
+        position: fixed;
+        width: 100%;
+        align-items: center;
+    }
+
+    .headerMain .headerLinks {
+        display: inline-block;
+    }
+
+    .headerMain .headerLinks ul {
+        display: flex;
+        justify-content: flex-start;
+        list-style: none;
+        gap: 0.5rem;
+        padding: 0;
+    }
+
+    .headerMain .headerLinks ul li a {
+        color: var(--light-color);
+        font-size: 1.2rem;
+        padding: 0 0.5rem;
+        text-decoration: none;
+    }
+
+    .headerMain .headerContacts {
+        display: inline-block;
+    }
+
+    .headerMain .headerContacts div {
+        display: flex;
+    }
+
+    .headerMain .headerContacts h6 {
+        font-size: 1.2rem;
+        padding: 0 0.5rem;
+        color: var(--sky-blue-color);
+    }
+
+    .headerMain .headerContacts span {
+        color: var(--sky-blue-color);
+    }
+
+
+    .navbar {
+        display: flex;
+        list-style: none;
+        justify-content: flex-start;
+        margin-bottom: 0px;
+    }
+
+    .modal {
+        margin-top: 500px;
+        margin-right: 2rem;
+    }
+}
+
+/* version Full-Desktop 992px hasta 1311px */
+@media (min-width: 1312px) {}

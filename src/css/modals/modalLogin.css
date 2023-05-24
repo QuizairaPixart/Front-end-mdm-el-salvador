@@ -1,0 +1,146 @@
+.content-modal {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dark-color);
+    background-image: url("../../img/bg_loging.svg");
+    background-size: cover;
+    border-radius: 10px;
+    margin: 0;
+    color: var(--light-color);
+    width: 100%;
+    align-items: center;
+    height: 62vh;
+    align-items: center;
+    max-height: 24rem;
+    overflow-y: scroll;
+    margin-right: 1rem;
+}
+
+.content-modal::-webkit-scrollbar {
+    display: none;
+}
+
+.title-login {
+    display: flex;
+    margin: 2rem 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteiner-login {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.conteiner-login div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.conteiner-login img {
+    position: relative;
+    left: 3%;
+    top: 13%;
+    z-index: 1;
+}
+
+
+.conteiner-login label {
+    margin: 0.9rem 0rem 0rem 0.1rem !important;
+    font-weight: 400 !important;
+    font-size: small;
+}
+
+.conteiner-login input {
+    position: relative;
+    color: var(--light-color);
+    background-color: transparent;
+    border: 1px solid var(--gray-color) !important;
+    border-radius: 5px;
+    margin-left: 0px;
+    padding: 0.4rem 1.7rem;
+}
+
+.content-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.button-login {
+    width: 85%;
+}
+
+::-webkit-input-placeholder {
+    /* Google Chrome y Safari */
+    color: var(--light-color);
+}
+
+.user-label {
+    position: relative;
+    left: 0;
+    background: url("../../img/pass_icon.svg") center / contain no-repeat;
+}
+
+.buttonShow {
+    background-color: transparent;
+    color: white;
+    border-radius: 20%;
+    padding: 15px 10px;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    border: none;
+    position: relative;
+    z-index: 1;
+    left: 80%;
+    bottom: 19%;
+    cursor: pointer;
+}
+
+.buttonShow i {
+    color: rgb(97, 193, 237);
+    }
+
+@media (min-width: 689px) {
+
+    .conteiner-login input {
+        padding: 0.4rem 5.6rem 0.4rem 2rem;
+        width: 100%;
+    }
+
+    .conteiner-login {
+        width: 85%;
+    }
+
+    .content-modal {
+        background-image: url("../../img/bg_loging.svg");
+        background-size: cover;
+        color: var(--light-color);
+        width: 100%;
+        overflow-y: scroll;
+        height: 60vh;
+        align-items: center;
+    }
+
+    .buttonShow {
+        left: 87% !important;
+    }
+
+}
+
+@media (min-width: 992px) {
+
+    .conteiner-login input {
+        padding: 0.5rem 10.6rem 0.5rem 2rem;
+    }
+
+    .content-modal {
+        max-height: 25rem;
+    }
+}

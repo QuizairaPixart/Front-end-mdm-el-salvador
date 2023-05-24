@@ -1,0 +1,55 @@
+.labelUsers {
+    font-weight: 200 !important;
+    margin: 10px 0px !important;
+}
+
+.selectUsers {
+    width: 100%;
+    border: 1px solid #6969697e !important;
+    height: 30px;
+}
+
+.selectUsers:focus {
+    border: 2px solid var(--secondary-color) !important;
+}
+
+.containerToggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+input::placeholder {
+    color: var(--gray-color);
+    font-size: small;
+}
+
+.btnDark {
+    padding: 6px 12px;
+    background-color: #000000;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 12px;
+    margin: 0.5rem 0 0;
+}
+
+/* version Tablet 689px hasta 991px */
+@media (max-width: 689px) {
+
+    .containerToggle {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .containerToggle Button {
+        width: 100%;
+        margin-bottom: 1rem;
+        margin-left: 0;
+        margin-left: 0 !important;
+    }
+
+}
