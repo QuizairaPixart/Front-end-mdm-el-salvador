@@ -1,0 +1,84 @@
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-bottom: 1px solid var(--gray-color);
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+    height: 5rem;
+} 
+
+.input-edit-header{
+    width: 250px;
+    border: none;
+    font-size: 2rem;
+    font-weight: 500;
+    color: black;
+    padding: 0 15px; 
+    height: 3rem;
+}
+
+.title {
+    margin: 0;
+    height: 3rem;
+    line-height: 3rem;
+}
+
+.input-edit-header:hover{
+    border-bottom: 1px solid rgb(228, 228, 228);
+    box-shadow: 0px 15px 10px -15px var(--light-shadow-color);
+}
+
+.input-edit-header:focus{
+    outline: none;
+    border-bottom: 1px solid rgb(228, 228, 228);
+    box-shadow: 0px 15px 10px -15px var(--light-shadow-color);
+}
+
+.advert {
+    margin-left: 0.5rem;
+    display: none;
+    /* display: flex;
+    align-items: center; */
+    position: relative;
+    top: -10px;
+}
+
+.advert h5 {
+    font-size: 1rem;
+    color: white;
+    background-color: #495057;
+    height: 3rem;
+    width: 9rem;
+    border-radius: 10px;
+    line-height: 3rem;
+    text-align: center;
+}
+
+.previous{
+    rotate: 180deg;
+    position: relative;
+    color: #495057;
+    left: -5px;
+    top: 30px;
+    width: 10px;
+}
+
+.visible {
+    display: flex;
+    align-items: center;
+}
+
+/* version Tablet 689px hasta 991px */
+@media (min-width: 689px) {
+
+    .header {
+        margin-bottom: 1rem;
+        padding: 1rem 0;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}

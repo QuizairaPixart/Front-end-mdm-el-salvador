@@ -35,8 +35,6 @@ export default function ModifyListSafe(props) {
                         suspect: true,
                     };
                     let responsePost = await post_data(`safeweb/${type}`, json);
-                    console.log(responseDelete);
-                    console.log(responsePost);
 
                     if (responsePost.status === 200) {
                         Swal.fire({

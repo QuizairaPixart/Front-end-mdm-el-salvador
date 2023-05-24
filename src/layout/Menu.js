@@ -240,7 +240,7 @@ export default function Menu() {
                 </nav>
             </div>
             <div className="footer-version">
-                <b>Versión 4.0.0</b>
+                <b className="version">Versión 4.0.0</b>
             </div>
         </aside>
     );

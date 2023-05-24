@@ -27,7 +27,6 @@ export function differenceTime(d1, d2) {
 
 //formatea un array con los dias de la semana
 export function ArrayWeek(week, days) {
-    console.log(week);
     let cantDays = week.length;
     let daysNum = days.getDay() - 1;
     return week.map((days, index) => {
@@ -64,4 +63,12 @@ export function currentAndPreviousDate(days, operation){
     let date = new Date(year, month, day, 0, 0, 0, 0);
 
     return [today, date];
+}
+
+//invertir el string de la fecha
+export function reverseDateString(date){
+
+    let day = date.split("-");
+    let response = day[2]+"-"+day[1]+"-"+day[0];
+    return (response);
 }

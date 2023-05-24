@@ -77,6 +77,7 @@ export default function SendMessages(props) {
             if (props.type === "dashboard") {
                 if (
                     response.data.result === true &&
+                    /* (Array.isArray(response.data.sendings) &&response.data.sendings.length>0) */
                     response.data.sendings === false
                 ) {
                     Swal.fire({

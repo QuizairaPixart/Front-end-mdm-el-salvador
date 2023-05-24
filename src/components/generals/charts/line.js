@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Chart } from "primereact/chart";
 import Loading from "../loading";
 import "../../../css/generals/charts/pie.css";
-import { dateDiff, currentAndPreviousDate } from "./utils/DatesFormats";
+import { dateDiff, currentAndPreviousDate, reverseDateString } from "./utils/DatesFormats";
 
-export default function Line({ data }) {
-
+export default function Line(props) {
+    //console.log(props);   
     let date = currentAndPreviousDate(6, "-");
     let today = date[0];
 
@@ -67,10 +67,22 @@ export default function Line({ data }) {
         let year = array[2];
 
         return `${dayLabel}-${monthLabel}-${year}`;
-    }
+    };
 
-    if (data) {
-        data.map(({ date }) => {
+    if(props?.ubication === "SfWb-home"){
+
+        /* una vez subidos los cambios de back-end, quitar esta validación  */
+        if(props?.data[0].day !== undefined){
+            props?.data?.map(({ day }) => {
+                daysLabels.push(reverseDateString(day));
+            });
+        };
+
+        props?.data?.map(({ count }) => {
+            arrayData.push(count);
+        });
+    } else {
+        props?.data?.map(({ date }) => {
             let diff = dateDiff(new Date(date), 6, "-");
             if (diff < 7) {
                 let index = diff;
@@ -149,7 +161,7 @@ export default function Line({ data }) {
 
     return (
         <>
-            {data !== false ? (
+            {props?.data !== false ? (
                 <Chart
                     type="line"
                     data={basicData}

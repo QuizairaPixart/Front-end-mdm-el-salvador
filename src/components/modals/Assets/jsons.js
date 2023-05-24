@@ -2,6 +2,7 @@ export function elementsLocked(data, tracking) {
     return [
         {
             key: "keyTouch",
+            name: "keyTouch",
             label: "Bloqueo de tactil",
             value: data.touch,
             id: "touch",
@@ -9,6 +10,7 @@ export function elementsLocked(data, tracking) {
         },
         {
             key: "keyScreen",
+            name: "keyScreen",
             label: "Bloqueo de pantalla",
             value: data.screen,
             id: "screen",
@@ -16,6 +18,7 @@ export function elementsLocked(data, tracking) {
         },
         {
             key: "keyBackground",
+            name: "keyBackground",
             label: "Cambiar fondo de pantalla",
             value: data.background,
             id: "background",
@@ -23,13 +26,41 @@ export function elementsLocked(data, tracking) {
         },
         {
             key: "keyAlarm",
+            name: "keyAlarm",
             label: "Activar alarma",
             value: data.alarm,
             id: "alarm",
             type: "checkbox",
         },
         {
+            key: "keyStatusMessage",
+            name: "keyStatusMessage",
+            label: "Enviar mensaje",
+            value: data.statusMessage,
+            id: "statusMessage",
+            type: "checkbox",
+        },
+        {
+            key: "keyMessageTitle",
+            name: "keyMessageTitle",
+            label: "Titulo de mensaje",
+            display: data.statusMessage,
+            value: data.messageTitle,
+            id: "messageTitle",
+            type: "text",
+        },
+        {
+            key: "keyMessageBody",
+            name: "keyMessageBody",
+            label: "Cuerpo de mensaje",
+            display: data.statusMessage,
+            value: data.messageBody,
+            id: "messageBody",
+            type: "area",
+        },
+        {
             key: "keyTracking",
+            name: "keyTracking",
             label: "Activar Tracking",
             value: tracking.statusTracking,
             id: "statusTracking",
@@ -37,6 +68,7 @@ export function elementsLocked(data, tracking) {
         },
         {
             key: "keyTrackingTrack",
+            name: "keyTrackingTrack",
             display: tracking.statusTracking,
             label: "Toma de datos",
             small: "(en minutos)",
@@ -46,6 +78,7 @@ export function elementsLocked(data, tracking) {
         },
         {
             key: "keyReportTracking",
+            name: "keyReportTracking",
             display: tracking.statusTracking,
             label: "Envio de datos",
             small: "(en minutos)",
@@ -55,6 +88,7 @@ export function elementsLocked(data, tracking) {
         },
         {
             key: "keyPhotoStatus",
+            name: "keyPhotoStatus",
             display: tracking.statusTracking,
             label: "Generar imagenes",
             value: data.photo.status,
@@ -63,6 +97,7 @@ export function elementsLocked(data, tracking) {
         },
         {
             key: "keyPhotoTime",
+            name: "keyPhotoTime",
             display: tracking.statusTracking === true ? (data.photo.status === true ? true : false) : false,
             label: "Intervalo de imagenes",
             small: "(en minutos)",
@@ -72,6 +107,7 @@ export function elementsLocked(data, tracking) {
         },
         {
             key: "keyPhotoQuality",
+            name: "keyPhotoQuality",
             display: tracking.statusTracking === true ? (data.photo.status === true ? true : false) : false,
             label: "Resolucion de imagenes: ",
             value: data.photo.quality,
@@ -94,36 +130,13 @@ export function elementsLocked(data, tracking) {
             ],
         },
         {
-            key: "keyStatusMessage",
-            label: "Enviar mensaje",
-            value: data.statusMessage,
-            id: "statusMessage",
-            type: "checkbox",
-        },
-        {
             key: "keyRecursive",
+            name: "keyRecursive",
             display: data.statusMessage,
             label: "Recursivo",
             value: data.recursive,
             id: "recursive",
             type: "checkbox",
-        },
-
-        {
-            key: "keyMessageTitle",
-            label: "Titulo de mensaje",
-            display: data.statusMessage,
-            value: data.messageTitle,
-            id: "messageTitle",
-            type: "text",
-        },
-        {
-            key: "keyMessageBody",
-            label: "Cuerpo de mensaje",
-            display: data.statusMessage,
-            value: data.messageBody,
-            id: "messageBody",
-            type: "area",
         },
     ];
 }

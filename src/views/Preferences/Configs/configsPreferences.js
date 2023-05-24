@@ -8,24 +8,28 @@ import Loading from "../../../components/generals/loading";
 import styles from "../../../css/generals/Checkbox.module.css";
 import stylesPreferences from "../../../css/preferences/Preferences.module.css";
 import "../../../css/styles.css";
+import { compareObj } from "../../../components/generals/toolsFunctions";
 
 export default function Configs() {
     //const data = useSelector((state) => state.preferences.configs);
+    const [settingsToCompare, setsettingsToCompare] = useState({});
     const [configs, setConfigs] = useState({});
 
     const getPreferences = async () => {
         let { data } = await get_data("preferences", 1);
         if(data){
             setConfigs(data);
+            setsettingsToCompare(data);
             viewCheckbox(data.use_other, data.use_google);
         }
     };
-
+    
     useEffect(() => {
         getPreferences();
     }, []);
 
     function viewCheckbox(others, google) {
+    
         if (others === true) {
             $("#others_use").prop("checked", true);
         } else {
@@ -54,35 +58,51 @@ export default function Configs() {
         } else {
             setConfigs({
                 ...configs,
-                [e.target.name]: e.target.value,
+                [e.target.name]: e.target.type === "number"? parseInt(e.target.value): e.target.value === ""? null: e.target.value,
             });
         }
     };
-
+    
+    
     const sendConfigs = async () => {
-        setConfigs({
-            ...configs,
-            date: new Date(Date.now()),
-        });
-
-        let { data } = await put_data("preferences", configs);
-        if (data.result === true) {
+        let date = new Date().toISOString();
+        let comparation = compareObj(configs, settingsToCompare);
+        
+        if(comparation){
             Swal.fire({
                 position: "center",
-                icon: "success",
-                title: "Cambios guardados con exito!",
+                icon: "info",
+                title: "¡No hay cambios para guardar!",
                 showConfirmButton: false,
                 timer: 1500,
             });
         } else {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Error al guardar los cambios!",
-                showConfirmButton: false,
-                timer: 1500,
+            setConfigs({
+                ...configs,
+                date: date,
             });
-        }
+
+            let { data } = await put_data("preferences", configs);
+            if (data.result === true) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Cambios guardados con exito!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Error al guardar los cambios!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        };
+        setsettingsToCompare(configs);
+        
     };
 
     if (Object.keys(configs).length === 0) {

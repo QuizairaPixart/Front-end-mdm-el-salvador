@@ -6,8 +6,6 @@ import Swal from "sweetalert2";
 import Loading from "../../../components/generals/loading";
 import SendMessages from "../../../components/modals/sendMessage";
 import Mapa from "../../../components/generals/map";
-import { SpeedDial } from "primereact/speeddial";
-import { Tooltip } from "primereact/tooltip";
 import store from "../../../reducer/store";
 import Header from "../../../components/generals/header";
 import Pie from "../../../components/generals/charts/pie";
@@ -15,25 +13,20 @@ import ModalApps from "../../../components/modals/modalApps";
 import KnobChart from "../../../components/generals/charts/knob";
 import VerticalBar from "../../../components/generals/charts/verticalBar";
 import BoxChart from "../../../components/generals/boxCharts";
-import ChangeName from "../../../components/modals/changeName";
 import LockedDevices from "../../../components/modals/lockeds";
 import Info from "../../../components/Dashboards/info";
 import ModalInforms from "../../../components/modals/modalInforms";
-import $ from "jquery";
+import ModalBackgroundChange from "../../../components/modals/modalBackgroundChange";
+import ModalContentDownload from "../../../components/modals/modalContentDownload";
 import { dateDiff, differenceTime } from "../../../components/generals/charts/utils/DatesFormats";
-import { useNavigate } from "react-router-dom";
-import {
-    jsonActions,
-    jsonActionsLecture,
-    jsonInfoDashboard,
-} from "./Assets/jsons";
+import { jsonInfoDashboard } from "./Assets/jsons";
+import SpeedDialMenu from "../../../components/Dashboards/speedDialMenu";
 import styles from "../../../css/Dashboards/DashDevices.module.css";
 import styleChecks from "../../../css/generals/Checkbox.module.css";
 
 export default function Dashboard() {
     let { user } = store.getState();
     const toast = useRef(null);
-    const navigate = useNavigate();
     const { id } = useParams();
     const [preferences, setPreferences] = useState(null);
     const [action, setAction] = useState("");
@@ -55,11 +48,12 @@ export default function Dashboard() {
 
     //Estados para mostrar o no los modales
     const [modalsShow, setModalsShow] = useState({
-        name: false,
         message: false,
         lockeds: false,
         reports: false,
         apps: false,
+        backgroundChange: false,
+        contentDownload: false,
     });
 
     const getDevice = async () => {
@@ -310,46 +304,42 @@ export default function Dashboard() {
                 cancelButtonText: "No",
                 reverseButtons: true,
             })
-            .then((result) => {
+            .then(async (result) => {
                 if (result.isConfirmed) {
-                    let { data } = post_data("actions", [json]);
+                    let { data } = await post_data("actions", [json]);
                     put_data("device", device);
                     getDevice();
                     if (data.result) {
                         Swal.fire({
-                            title: "Bien!",
+                            position: "center",
+                            icon: "success",
+                            title: "Acción realizada con éxito!",
                             text: `${
                                 action === "activar"
                                     ? "Activacion"
                                     : "Desactivacion"
                             } exitosa!`,
-                            icon: "success",
-                            confirmButtonText: "Cerrar",
-                            confirmButtonColor: "#007bff",
+                            showConfirmButton: false,
+                            timer: 2000,
                         });
                     } else {
                         Swal.fire({
-                            title: "Error!",
+                            position: "center",
+                            icon: "error",
+                            title: "Error. No se pudo realizar la acción!",
                             text: `${
                                 action === "activar"
                                     ? "Activacion"
                                     : "Desactivacion"
                             } fallida!`,
-                            icon: "error",
-                            confirmButtonText: "Cerrar",
-                            confirmButtonColor: "#007bff",
+                            showConfirmButton: false,
+                            timer: 2000,
                         });
                     }
                 }
             });
     }
 
-    let items =
-        data.data !== null && user.range === 3
-            ? jsonActionsLecture(handleModal, data, deleted, navigate)
-            : data.data !== null && user.range !== 3
-            ? jsonActions(handleModal, data, deleted, navigate)
-            : [];
     let infos = data.data !== null ? jsonInfoDashboard(data) : [];
 
     useEffect(() => {
@@ -374,9 +364,22 @@ export default function Dashboard() {
                 className="content-wrapper containerHeight"
                 style={{ padding: "2rem 1.5rem" }}
             >
+                <SpeedDialMenu
+                    onHide={handleModal}
+                    data={data}
+                    deleted={deleted}
+                    type="devices"
+                    id={id}
+                />
                 <div>
                     <Toast ref={toast} position="bottom-right" />
-                    <Header title={`Dashboard ${data.data.name}`} />
+                    <Header 
+                        title={data.data.name}
+                        edit={true} 
+                        data={data.data}
+                        type="device"
+                        reload={getDevice}
+                    />
                 </div>
 
                 <div className={styles.headerDash}>
@@ -483,27 +486,6 @@ export default function Dashboard() {
                                 <h3>No hay data para mostrar</h3>
                             )}
                         </BoxChart>
-                        <div
-                            className="speeddial-tooltip-demo"
-                            style={{
-                                position: "fixed",
-                                top: "4rem",
-                                right: "5rem",
-                                zIndex: "2",
-                            }}
-                        >
-                            <Tooltip
-                                target=".speeddial-tooltip-demo .speeddial-right .p-speeddial-action"
-                                position="left"
-                            />
-                            <SpeedDial
-                                model={items}
-                                direction="down"
-                                className="speeddial-right"
-                                buttonClassName="p-button-danger"
-                                type="linear"
-                            />
-                        </div>
                     </div>
                 </div>
 
@@ -514,6 +496,8 @@ export default function Dashboard() {
                         heightBody="90%"
                         title="Geoposicionamiento"
                         icon="pi pi-map-marker"
+                        buttonHistoryUbications={true}
+                        id={id}
                     >
                         <Mapa info={data.data.location} type="last" />
                     </BoxChart>
@@ -538,21 +522,13 @@ export default function Dashboard() {
                     title="Enviar Mensaje"
                 />
 
-                {/*MODAL CAMBIAR NOMBRE*/}
-                <ChangeName
-                    type="device"
-                    reload={getDevice}
-                    show={modalsShow.name}
-                    onHide={() => handleModal("name", false)}
-                    data={data.data}
-                />
-
                 {/*MODAL APLICACIONES*/}
                 {data.data.applications && data.data.applications !== null ? (
                     <ModalApps
                         show={modalsShow.apps}
                         onHide={() => handleModal("apps", false)}
                         data={data.data.applications}
+                        type="devices"
                     />
                 ) : (
                     <></>
@@ -578,6 +554,26 @@ export default function Dashboard() {
                 ) : (
                     <></>
                 )}
+
+                {/*MODAL CAMBIO DE FONDO DE PANTALLA*/}
+                <ModalBackgroundChange
+                    show={modalsShow.backgroundChange}
+                    onHide={() => handleModal("backgroundChange", false)}
+                    title="Cambiar Fondo de Pantalla"
+                    btnError="Cerrar"
+                    btnSuccess="Enviar"
+                    type="devices"
+                />
+
+                {/*MODAL DE DESCARGA DE CONTENIDO*/}
+                <ModalContentDownload
+                    show={modalsShow.contentDownload}
+                    onHide={() => handleModal("contentDownload", false)}
+                    title="Descargar Contenido"
+                    btnError="Cerrar"
+                    btnSuccess="Enviar"
+                    type="devices"
+                />
             </div>
         );
     }

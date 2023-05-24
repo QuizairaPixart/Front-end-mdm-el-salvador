@@ -2,9 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { get_data, put_data } from "../../../actions/index";
 import Loading from "../../../components/generals/loading";
-import ChangeName from "../../../components/modals/changeName";
-import { SpeedDial } from "primereact/speeddial";
-import { Tooltip } from "primereact/tooltip";
 import { Toast } from "primereact/toast";
 import store from "../../../reducer/store";
 import LockedDevices from "../../../components/modals/lockeds";
@@ -16,9 +13,11 @@ import SendMessages from "../../../components/modals/sendMessage";
 import Header from "../../../components/generals/header";
 import Swal from "sweetalert2";
 import $ from "jquery";
-import { jsonActionsGroups } from "./Assets/jsons";
-import { formatDate } from "../../../components/generals/charts/utils/DatesFormats";
 import DataTableLazy from "../../../components/generals/datatables/dataTableLazy";
+import SpeedDialMenu from "../../../components/Dashboards/speedDialMenu";
+import ModalBackgroundChange from "../../../components/modals/modalBackgroundChange";
+import ModalContentDownload from "../../../components/modals/modalContentDownload";
+import ModalApps from "../../../components/modals/modalApps";
 
 export default function DashboardGroup() {
     let { user } = store.getState();
@@ -64,13 +63,14 @@ export default function DashboardGroup() {
         let response = await get_data("group", id);
         //console.log("group:", response)
         setData(response.data);
+        setIdsDevices(response.data.devices);
 
         return response;
     };
 
     const getPreferencesLocked = async (x) => {
         let response = await get_data("preferences", 1);
-        //console.log(response)
+        //console.log(response);
         setPreferences(response.data);
     };
 
@@ -331,9 +331,7 @@ export default function DashboardGroup() {
         let devices = selected.devices;
         let ids = devices.map(device => device.id);
         setIdsDevices(ids);
-    }
-
-    const items = jsonActionsGroups(handleModal);
+    };
 
     if (data === null || preferences === null) {
         return (
@@ -344,8 +342,21 @@ export default function DashboardGroup() {
     } else {
         return (
             <div className="content-wrapper containerHeight">
-                <Header title={`Dashboard ${data.name}`} />
+                <SpeedDialMenu
+                    onHide={handleModal}
+                    data={data}
+                    //deleted={deleted}
+                    idGroup={id}
+                    type="groups"
+                />
                 <Toast ref={toast} />
+                <Header 
+                    title={data.name}
+                    edit={true} 
+                    data={data}
+                    type="group"
+                    reload={getData}
+                />
                 <div
                     className="speeddial-tooltip-demo"
                     style={{
@@ -356,17 +367,6 @@ export default function DashboardGroup() {
                         zIndex: "999",
                     }}
                 >
-                    <Tooltip
-                        target=".speeddial-tooltip-demo .speeddial-right .p-speeddial-action"
-                        position="left"
-                    />
-                    <SpeedDial
-                        model={items}
-                        direction="down"
-                        className="speeddial-right"
-                        buttonClassName="p-button-danger"
-                        type="linear"
-                    />
                 </div>
 
                 <div>
@@ -508,15 +508,6 @@ export default function DashboardGroup() {
                     />
                 </ModalGeneric>
 
-                {/*MODAL CAMBIAR NOMBRE*/}
-                <ChangeName
-                    data={data}
-                    type="group"
-                    show={modalsShow.name}
-                    onHide={() => handleModal("name", false)}
-                    reload={getData}
-                />
-
                 {/*MODAL CONFIGURACIONES DE REPORTES*/}
                 <ConfigReportGroups
                     show={modalsShow.reports}
@@ -534,18 +525,54 @@ export default function DashboardGroup() {
                 />
 
                 {/*MODAL BLOQUEAR*/}
-                {/*<LockedDevices
+                    <LockedDevices
                     show={modalsShow.locked}
-                    action={action}
+                    onHide={() => handleModal("locked", false)}
+                    action={action !== null ? action : null}
                     preferences={
                         preferences && preferences !== null
                             ? preferences.defaultThief
                             : null
                     }
-                    onHide={() => handleModal("locked", false)}
                     devices={[parseInt(id)]}
+
                     title={`Esta seguro que quiere ${action} los dispositivos del grupo?`}
-                />*/}
+                />
+                
+
+                {/*MODAL CAMBIO DE FONDO DE PANTALLA*/}
+                <ModalBackgroundChange
+                    show={modalsShow.backgroundChange}
+                    onHide={() => handleModal("backgroundChange", false)}
+                    title="Cambiar Fondo de Pantalla"
+                    btnError="Cerrar"
+                    btnSuccess="Enviar"
+                    group={[parseInt(id)]}
+                    devices={idsDevices}
+                    type="groups"
+                />
+
+                {/*MODAL DE DESCARGA DE CONTENIDO*/}
+                <ModalContentDownload
+                    show={modalsShow.contentDownload}
+                    onHide={() => handleModal("contentDownload", false)}
+                    title="Descargar Contenido"
+                    btnError="Cerrar"
+                    btnSuccess="Enviar"
+                    // group={[parseInt(id)]}
+                    // devices={idsDevices}
+                    type="groups"
+                />
+
+                {/* MODAL APLICACIONES*/}
+
+                    <ModalApps
+                        show={modalsShow.apps}
+                        onHide={() => handleModal("apps", false)}
+                        //data={data.data.applications}
+                        type="groups"
+                    />
+
             </div>
         );
     }

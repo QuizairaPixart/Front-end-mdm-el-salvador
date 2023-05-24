@@ -71,7 +71,7 @@ export default function Listas() {
                     <DataTableDemo
                         reload={getLists}
                         data={lists.black.filter(
-                            (list) => list.suspect === true
+                            (list) => list.suspect === false
                         )}
                         table="blackList"
                         rowSelecteds={false}
@@ -136,7 +136,7 @@ export default function Listas() {
                     <DataTableDemo
                         reload={getLists}
                         data={lists.black.filter(
-                            (list) => list.suspect === false
+                            (list) => list.suspect === true
                         )}
                         table="suspect"
                         rowSelecteds={false}

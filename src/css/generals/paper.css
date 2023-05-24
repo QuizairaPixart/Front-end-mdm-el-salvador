@@ -96,3 +96,20 @@ input:checked+.slider:before {
     margin-left: 7px;
     border-color: var(--dark-light-color);
 }
+
+.visible{
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.btnIRight {
+    transform: rotate(45deg);
+    transition: all .3s ease-in-out;
+}
+
+.btnILeft {
+    transform: rotate(0deg);
+    transition: all .3s ease-in-out;
+}

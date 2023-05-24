@@ -5,74 +5,19 @@ import Loading from "../generals/loading";
 
 export default function Wanted(querys) {
     //console.log(querys.data);
-    let urls = querys.data;
-
-    //función para ordenar querys
-    function sortQuerys(data){
-        let querys = data;
-        let querysSorted = querys && querys.sort((query1, query2) => {
-            return new Date(query2.date) - new Date(query1.date);
-        }); 
-        
-        return querysSorted;
-    };
-
-    //función para crear el listado de querys y contar la cantidad de visitas por url
-    function listOfQuerys(data){
-        let querys = data;
-        let querysDesc = sortQuerys(querys);
-        let listQuerys = [];
-
-        querysDesc.forEach(query =>{ 
-            let index = listQuerys.findIndex((q)=>q.url===query.url);
-            if( index === -1){
-                listQuerys.push({
-                    id: query.id,
-                    url: query.url,
-                    count: 1,
-                    lastDate: query.date
-                })  
-            } else {
-                listQuerys[index].count += 1;
-            }
-        });
-        
-        return listQuerys;
-    };
-
-    //function top3
-    function creationOfTheTop3(data) {
-        let top =[];
-        let querys = data;
-        let list = listOfQuerys(querys);
-        top = list && list.slice(0, 3);
-
-        return top;
-    };
     
-    const top3 = creationOfTheTop3(urls);
+    //últimas 3 urls buscadas
+    let top3 = querys?.data?.last;
 
-    //function top10
-    function creationOfTheTop10(data) {
-        let top =[];
-        let querys = data;
-        let list = listOfQuerys(querys);
-        let listByCount = list.sort((query2, query1) => {
-            return query1.count - query2.count;
-        });
+    //Top 10 de las urls más buscadas
 
-        top = listByCount && listByCount.slice(0, 10);
-    
-        return top;
-    };
+    let top10 = querys?.data?.most;
 
-    const top10 = creationOfTheTop10(urls);
-
-    const labelsTop10 = top10.map(({ url }) => {
+    const labelsTop10 = top10?.map(({ url }) => {
         return url;
     });
 
-    const dataTop10 = top10.map(({ count }) => {
+    const dataTop10 = top10?.map(({ count }) => {
         return count;
     });
 
@@ -121,11 +66,6 @@ export default function Wanted(querys) {
                                     <Info
                                         key={index}
                                         title={element.url}
-                                        value={
-                                            element.count !== 1
-                                                ? element.count + " visitas"
-                                                : element.count + " visita"
-                                        }
                                         icon="pi pi-bookmark"
                                         width="100%"
                                         height="30%"

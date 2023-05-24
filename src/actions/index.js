@@ -45,6 +45,8 @@ export const get_data = async (ruta, id) => {
 
 //POST
 export const post_data = async (table, payload) => {
+    let response;
+    let resError;
     let data;
     if (table === "actions") {
         data = {
@@ -53,19 +55,15 @@ export const post_data = async (table, payload) => {
     } else {
         data = payload;
     }
-    return await axios
-        .post(
+        response = await axios.post(
             `${config.backend.host}:${config.backend.portHttp}/${table}`,
             data,
             getCredetentials()
         )
-        .catch(({ response }) => {
-            if (response.data.redirect) {
-                return redirectIndex();
-            } else {
-                return response;
-            }
+        .catch(( response ) => {
+            resError = errorHandling(response, "post");
         });
+    return (resError !== undefined ? resError : response);
 };
 
 //PUT

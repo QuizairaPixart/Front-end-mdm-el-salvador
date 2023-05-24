@@ -30,7 +30,7 @@ import "./css/globals.css";
 
 const App = () => {
     return (
-        <div class="wrapper">
+        <div className="wrapper">
             <Routes>
                 <Route exact path="/" element={<Index />} />
                 <Route path="/mdm" element={<LogOut component={Layout} />}>

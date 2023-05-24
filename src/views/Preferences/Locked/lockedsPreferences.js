@@ -8,16 +8,19 @@ import { put_data, get_data } from "../../../actions/index";
 import styles from "../../../css/generals/Checkbox.module.css";
 import stylesPreferences from "../../../css/preferences/Preferences.module.css";
 import "../../../css/styles.css";
+import { compareObj } from "../../../components/generals/toolsFunctions";
 
 export default function Mailing() {
     //const data = useSelector((state) => state.preferences.configs);
     const [locked, setLocked] = useState({});
+    const [settingsToCompare, setsettingsToCompare] = useState({});
 
     const getPreferencesLocked = async () => {
         let { data } = await get_data("preferences/thief", 1);
         
         if (data) {
             setLocked(data); 
+            setsettingsToCompare(data);
         }
     };
 
@@ -48,34 +51,48 @@ export default function Mailing() {
         } else {
             setLocked({
                 ...locked,
-                [e.target.id]: e.target.value,
+                [e.target.id]: e.target.type === "number"? parseInt(e.target.value): e.target.value === ""? null: e.target.value,
             });
         }
     };
 
     const sendConfigsLocked = async () => {
-        setLocked({
-            ...locked,
-            date: new Date(Date.now()),
-        });
+        let date = new Date().toISOString();
+        let comparation = compareObj(locked, settingsToCompare);
 
-        let response = await put_data("preferences/thief", locked);
-        if (response.data.result === true) {
+        if(comparation){
             Swal.fire({
-                title: "Cambios guardados con exito!",
-                icon: "success",
+                position: "center",
+                icon: "info",
+                title: "¡No hay cambios para guardar!",
                 showConfirmButton: false,
                 timer: 1500,
             });
         } else {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Error al guardar los cambios!",
-                showConfirmButton: false,
-                timer: 1500,
+            setLocked({
+                ...locked,
+                date: date,
             });
+
+            let response = await put_data("preferences/thief", locked);
+            if (response.data.result === true) {
+                Swal.fire({
+                    title: "Cambios guardados con exito!",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Error al guardar los cambios!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }  
         }
+        setsettingsToCompare(locked);
     };
 
     if (Object.keys(locked).length === 0) {

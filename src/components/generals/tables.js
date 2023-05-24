@@ -35,7 +35,7 @@ export default function Table(props) {
       column.selector = chau;
       columns.push(column);
     });
-    console.log(columns);
+    (columns);
   }
 
   //{

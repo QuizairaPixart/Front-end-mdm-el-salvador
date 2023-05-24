@@ -1,7 +1,12 @@
 .main-footer{
-    height: 3rem !important;
+    height: 2rem !important;
     background-color: var(--dark-color);
     color: white;
     text-align: center;
+    padding: 1px;
+}
+
+.rights{
+    font-size: 12px;
 }
 

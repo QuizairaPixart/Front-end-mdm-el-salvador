@@ -2,15 +2,16 @@ import Swal from "sweetalert2";
 import { redirectIndex } from "../../components/generals/redirect";
 
 export function errorHandling(response, petition) {
-
+    //console.log(response);
     let object = {
         error: true,
         message: response.message,
         code: response.code
-
     };
 
-    if(petition === "get"){  
+    console.log(object);
+
+    if(petition === "get" || petition === "post"){  
         Swal.fire({
             icon: 'error',
             title: 'Oops...',

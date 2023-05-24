@@ -4,53 +4,49 @@ import { formatDate } from "../generals/charts/utils/DatesFormats";
 import DataTableDemo from "../generals/datatables/datatable";
 
 export default function ModalInforms(props) {
+    //console.log(props);
     const [data, setData] = useState({
         cases: null,
         ticket: null,
     });
     const [modal, setModal] = useState(false);
 
-    /*function sanitizationData() {
-
-        props.data.forEach((info) => {
-            info.date_order = formatDate(info.date_order);
-            if(info.date_order === "Invalid Date" || info.date_order === null) {
-                info.date_order = "Sin fecha de comienzo";
-            }
+    function sanitizationData() {
+  
+      let format_data=  props.data.map((info) => {
+             
+            let date_order = !info.date_order ? "Sin fecha de comienzo" : new Date(info.date_order).toLocaleString('es-AR');
+            let date_finish = !info.date_finish  ? "Sin fecha de finalización" : new Date(info.date_finish).toLocaleString('es-AR');
+            
+            info.date_order=date_order;
+            info.date_finish=date_finish;
+            return info
         });
-
-        props.data.forEach((info) => {
-            info.date_finish = formatDate(info.date_finish);
-            if(info.date_finish === "Invalid Date" || info.date_finish === null) {
-                info.date_finish = "Sin fecha de finalización";
-            }
-        });
-
         setData({
             ...data,
-            cases: props.data,
+            cases: format_data,
         });
-    }*/
+    }
 
     function viewTicket(info) {
         let array =
-            info && info.tracking !== null ? JSON.parse(info.tracking) : [];
+            info && info.tracking !== null ? info.tracking.map((element)=> JSON.parse(element)): [];
         setData({
             ...data,
             ticket: array,
         });
         props.onHide();
-        setModal(true);
-    }
+        setModal(true); 
+    }  
 
     useEffect(() => {
-        //sanitizationData();
+        sanitizationData();
     }, []);
 
     return (
         <>
             {/*MODAL DE TICKET DE ROBO*/}
-            {/*data.ticket !== null && data.ticket !== undefined ? (*/}
+            {data.ticket !== null && data.ticket !== undefined ? (
                 <ModalGeneric
                     show={modal}
                     onHide={() => setModal(false)}
@@ -101,10 +97,10 @@ export default function ModalInforms(props) {
                         ]}
                     />
                 </ModalGeneric>
-            {/*}) : null*/}
+            ) : null}
 
             {/*MODAL DE HISTORIAL DE ROBOS*/}
-            {/*data.cases !== null && data.cases !== undefined ? (*/}
+            {data.cases !== null && data.cases !== undefined ? (
                 <ModalGeneric
                     show={props.show}
                     onHide={props.onHide}
@@ -147,7 +143,7 @@ export default function ModalInforms(props) {
                         ]}
                     />
                 </ModalGeneric>
-            {/*) : null*/}
+            ) : null}
         </>
     );
 }

@@ -256,8 +256,6 @@ export default function DataTableLazy(props) {
 
                 const res = await get_data("devices", null);
                 let data = res.data;
-
-                console.log("sin JSON:", res)
                 
                 if(data.length !== 0){
                     data.map((info) => {

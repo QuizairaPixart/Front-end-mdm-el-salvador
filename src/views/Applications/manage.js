@@ -12,30 +12,19 @@ import Button from "react-bootstrap/Button";
 import { put_data } from "../../actions/index";
 import { Toast } from "primereact/toast";
 
-const categorys = [
-    { name: "Sistema", id: 1 },
-    { name: "Educativas", id: 2 },
-    { name: "No Educativas", id: 3 },
-    { name: "Productividad", id: 4 },
-    { name: "Internet", id: 5 },
-    { name: "Ocio", id: 6 },
-    { name: "Otras", id: 7 },
-    { name: "No Permitidas", id: 0 },
-];
-
 export default function ManageApps() {
-    const [category, setCategory] = useState({ name: "Sistema", id: 1 });
-    const [apps, setApps] = useState(null);
     const location = useLocation();
-    console.log(location)
     const { state } = location;
+    const [category, setCategory] = useState({ name: "No Permitidas", id: 0 });
+    const [categorys, setCategorys] = useState(state.categorys);
+    const [apps, setApps] = useState(null);
     const toast = useRef(null);
 
     //Apps por actualizar
-    const [appsToPut, setAppsToPut] = useState([]);
+    const appsToPut = [];
 
     useEffect(() => {
-        getApps(state);
+        getApps(state.apps);
     }, []);
 
     function getApps (data){
@@ -47,19 +36,16 @@ export default function ManageApps() {
     };
 
     const checkAppUpdate = (app) => {
-        let appFound = appsToPut.find((item) => item.id === app.id);
-        if(appFound === undefined){
-            return app;
+        let appFound;
+        if(appsToPut.length === 0){
+            appsToPut.push(app);
         } else {
-            appsToPut.forEach((item) => item.id === appFound.id? item.groupApp = app.groupApp: null);
-            return undefined;
-        }
-    }
-
-    const updateApps = (data) => {
-        let app = checkAppUpdate(data);
-        if (app !== undefined){
-            setAppsToPut([...appsToPut, data]);
+            appFound = appsToPut.find(item => (item.id === app.id));
+            if(appFound === undefined){
+                appsToPut.push(app);
+            } else {
+                appsToPut.forEach((item) => item.id === appFound.id? item.groupApp = app.groupApp: null); 
+            }
         }
     };
 
@@ -81,14 +67,27 @@ export default function ManageApps() {
 
     const putApps = async (data) => {
         let response = await put_data("applications", data);
-        if (response.status === 200) {
+        
+        if(checkResponsePutApps(response.data)) {
             showToast(true);
         } else {
             showToast(false);
         }
+        getApps(state.apps);
+        appsToPut = [];
+    };
 
-        setAppsToPut([]);
-    }
+    function checkResponsePutApps(response){
+        let check = true;
+
+        for(let i=0; i < response.length; i++){
+            if(response[i].result === false){
+                check = false;
+                return check;
+            }
+        }
+        return check;
+    };
 
     return (
         <div className="content-wrapper containerHeight">
@@ -117,13 +116,9 @@ export default function ManageApps() {
             <div>
                 {apps !== null ? (
                     <BoxApps
-                        data={
-                            category.id === 0
-                                ? apps.filter((app) => app.system === false)
-                                : apps
-                        }
+                        data={apps.sort((a,b)=>a.id-b.id)}
                         category={category}
-                        update={updateApps}
+                        update={checkAppUpdate}
                     />
                 ) : (
                     <Loading color="primary" />

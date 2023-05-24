@@ -19,7 +19,8 @@ export default function SafeWeb() {
     const getSafeWeb = async () => {
 
         let date = currentAndPreviousDate(6, "-");
-        let response = await get_data("safeweb/home", date[1]);
+        let day = new Date (date[1]).toISOString().split("T")[0];
+        let response = await get_data("safeweb/home", day);
         
         if(response){
             setData(response.data);
@@ -50,7 +51,7 @@ export default function SafeWeb() {
                             data?.blackList?.length === 0 ? (
                                 <p>Sin data a mostrar</p>
                             ) : (
-                                <Line data={data.blackList} />
+                                <Line data={data?.blackList} ubication="SfWb-home" />
                             )}
                         </BoxChart>
                         <BoxChart
@@ -65,7 +66,7 @@ export default function SafeWeb() {
                             data?.whiteList?.length === 0 ? (
                                 <p>Sin data a mostrar</p>
                             ) : (
-                                <Line data={data.whiteList} />
+                                <Line data={data?.whiteList} ubication="SfWb-home"/>
                             )}
                         </BoxChart>
                     </div>
@@ -87,7 +88,7 @@ export default function SafeWeb() {
                                 }}
                             >
                                 <Wanted
-                                    data={data?.queryList}
+                                    data={data?.search}
                                 />
                             </div>
                         </BoxChart>
@@ -108,7 +109,7 @@ export default function SafeWeb() {
                         data?.queryList?.length === 0 ? (
                             <p>Sin data a mostrar</p>
                         ) : (
-                            <Line data={data?.queryList} />
+                            <Line data={data?.queryList} ubication="SfWb-home"/>
                         )}
                     </BoxChart>
                 </div>

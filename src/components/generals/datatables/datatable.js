@@ -265,7 +265,7 @@ export default function DataTableDemo(props) {
                             selectionMode="multiple"
                             selectionAriaLabel="name"
                             headerStyle={{ width: "3rem" }}
-                            style={{ height: "5.5rem" }}
+                            style={{ height: "5.5rem", textAlign: "center" }}
                             headerClassName='selectionChexbox'
                         />
                     )}

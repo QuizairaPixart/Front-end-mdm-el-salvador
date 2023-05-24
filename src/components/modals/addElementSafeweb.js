@@ -50,7 +50,6 @@ export default function AddElement(props) {
     }
 
     async function newElement() {
-        console.log(props.action);
         $('#btnModalSucess').prop('disabled', true);
         if (
             (props.action === "blacklist" || props.action === "whitelist") &&

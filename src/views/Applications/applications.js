@@ -6,19 +6,19 @@ import CardGroup from "../../components/Applications/cardGroup";
 import { NavLink } from "react-router-dom";
 import styles from "../../css/applications/Apps.module.css";
 
-const categorys = [
-    { name: "Sistema", id: 1 },
-    { name: "Educativas", id: 2 },
-    { name: "No Educativas", id: 3 },
-    { name: "Productividad", id: 4 },
-    { name: "Internet", id: 5 },
-    { name: "Ocio", id: 6 },
-    { name: "Otras", id: 7 },
-    { name: "No Permitidas", id: 0 },
-];
-
 export default function Applications() {
     const [apps, setApps] = useState([]);
+
+    const categorys = [
+        { name: "No Permitidas", id: 0 },
+        { name: "Sistema", id: 1 },
+        { name: "Educativas", id: 2 },
+        { name: "No Educativas", id: 3 },
+        { name: "Productividad", id: 4 },
+        { name: "Internet", id: 5 },
+        { name: "Ocio", id: 6 },
+        { name: "Otras", id: 7 },
+    ];
 
     useEffect(() => {
         getApps();
@@ -36,7 +36,7 @@ export default function Applications() {
                 <NavLink
                     to="/mdm/applications/manage"
                     className={`nav-link hoverly ${styles.linkButton}`}
-                    state={apps}
+                    state={{categorys, apps}}
                 >
                     <Button variant="dark" className={`${styles.button}`}>
                         <i className="fas fa-cog" style={{marginRight: "0.5rem"}}></i>

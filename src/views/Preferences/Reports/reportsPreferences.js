@@ -11,11 +11,13 @@ import "../../../css/preferences/reports.css";
 import styles from "../../../css/generals/Checkbox.module.css";
 import stylesPreferences from "../../../css/preferences/Preferences.module.css";
 import "../../../css/styles.css";
+import { compareObj } from "../../../components/generals/toolsFunctions";
 
 export default function Reports() {
     const [data, setData] = useState({});
     const [groups, setGroups] = useState(null);
     const [group, setGroup] = useState(null);
+    const [settingsToCompare, setsettingsToCompare] = useState({});
 
     useEffect(() => {
         getData();
@@ -24,10 +26,10 @@ export default function Reports() {
 
     const getData = async () => {
         let { data }  = await get_data("preferences/reports", 1);
-        console.log(data)
 
         if(data) {
             setData(data);
+            setsettingsToCompare(data);
         }
     };
 
@@ -41,12 +43,47 @@ export default function Reports() {
     };
 
     async function saveData(e) {
-        setData({
-            ...data,
-            date: new Date(Date.now()),
-        });
+        let date = new Date().toISOString();
+        let comparation = compareObj(data, settingsToCompare);
 
-        if(data.reportsDays === false){
+        if(comparation){
+            Swal.fire({
+                position: "center",
+                icon: "info",
+                title: "¡No hay cambios para guardar!",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        } else if (data.reportsDays === true && (data.emailUser === "" || data.emailUser === null || data.emailKey === "" || data.emailKey === null)){
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "No puede activar reportes sin tener un email y una clave SMTP configurados!",
+                showConfirmButton: false,
+                timer: 2500,
+            });
+        } else if (data.reportsDays === true && (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(data.emailUser) === false)) {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Email con formato invalido!",
+                showConfirmButton: false,
+                timer: 2000,
+            });
+        } else if (data.reportsDays === true && (/^[a-z0-9](\.?[a-z0-9]){5,}@gmail\.com$/i.test(data.emailUser) === false)) {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Email debe ser dominio Gmail!",
+                showConfirmButton: false,
+                timer: 2000,
+            });
+        } else {
+            setData({
+                ...data,
+                date: date,
+            });
+            
             let response = await put_data("preferences/reports", data);
             if (response.data.result) {
                 Swal.fire({
@@ -65,70 +102,21 @@ export default function Reports() {
                     timer: 1500,
                 });
             }
-        } else {
-            if (data.reportsDays === true && (data.emailUser === "" || data.emailUser === null || data.emailKey === "" || data.emailKey === null)) {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "No puede activar reportes sin tener un email y una clave SMTP configurados!",
-                    showConfirmButton: false,
-                    timer: 2500,
-                });
-            } else if (/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(data.emailUser) === false) {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "Email con formato invalido!",
-                    showConfirmButton: false,
-                    timer: 2000,
-                });
-            } else if (/^[a-z0-9](\.?[a-z0-9]){5,}@gmail\.com$/i.test(data.emailUser) === false) {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "Email debe ser dominio Gmail!",
-                    showConfirmButton: false,
-                    timer: 2000,
-                });
-            } else {
-                let response = await put_data("preferences/reports", data);
-
-                if (response.data.result) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Cambios guardados exitosamente!",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                } else {
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: "Error al guardar cambios!",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                }
-            }
         }
+        setsettingsToCompare(data);
     }
 
     const handleOnChange = (e) => {
+        console.log(e);
         if (e.target.type === "checkbox") {
             setData({
                 ...data,
                 [e.target.id]: $(`#${e.target.id}`).is(":checked"),
             });
-        } else if(e.target.name === "days") {
-            setData({
-                ...data,
-                [e.target.name]: parseInt(e.target.value),
-            });
         } else {
             setData({
                 ...data,
-                [e.target.name]: e.target.value,
+                [e.target.name]: e.target.type === "number"? parseInt(e.target.value): e.target.value === ""? null: e.target.value,
             });
         }
     };

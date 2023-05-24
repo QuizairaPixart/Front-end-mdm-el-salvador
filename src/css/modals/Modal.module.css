@@ -19,5 +19,63 @@
 
 .inputUsers {
     width: 100% !important;
-    border: 1px solid var(--gray-shadow-color) !important; 
+    border: 1px solid #6969697e !important; 
 }
+
+.modalBackgroundChangeBody{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 100px;
+    color: black;
+}
+
+.modalTitle{
+    color: black;
+}
+
+.fancy_file{
+    display: none;
+}
+
+.fancy_file_label {
+    display: flex;
+    width: 100%;
+    border: 1px solid #CACACA;
+    border-radius: 10px;
+    height: 50px;
+    align-items: center;
+    padding-left: 10px;
+    margin-bottom: 0;
+}
+
+.fancy_file_name{
+    width: 90%;
+    font-weight: normal;
+}
+
+.fancy_file_name span{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.fancy_file_button{
+    background-color: #003686;
+    border: 1px solid #003686;
+    border-radius: 10px;
+    color: white;
+    white-space: nowrap;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    cursor: pointer;
+}
+
+.fancy_file_name, .fancy_file_button{
+    padding: 5px 10px;
+} 

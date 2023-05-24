@@ -75,23 +75,6 @@ button {
     color: var(--light-color) !important;
 }
 
-
-.speeddial-tooltip-demo .p-speeddial-direction-up.speeddial-left {
-    left: 0;
-    bottom: 0;
-}
-
-.speeddial-tooltip-demo .p-speeddial-direction-up.speeddial-right {
-    right: 0;
-    bottom: 0;
-}
-
-.p-button.p-button-danger:enabled:focus {
-    box-shadow: 0 0 0 2px var(--light-color), 0 0 0 4px rgb(31, 31, 31), 0 1px 2px 0 var(--dark-color) !important;
-}
-
-
-
 /* version Tablet 689px hasta 991px */
 @media (min-width: 689px) {
     .headerDash {

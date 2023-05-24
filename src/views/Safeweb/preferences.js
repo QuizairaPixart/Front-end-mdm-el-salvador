@@ -8,16 +8,19 @@ import styles from "../../css/generals/Checkbox.module.css";
 import stylesPreferences from "../../css/preferences/Preferences.module.css";
 import "../../css/preferences/reports.css";
 import "../../css/styles.css";
+import { compareObj } from "../../components/generals/toolsFunctions";
 
 export default function PreferencesSafeweb() {
     const [check, setCheck] = useState({});
     const [safeWeb, setSafeWeb] = useState(true);
+    const [settingsToCompare, setsettingsToCompare] = useState({});
 
     const getData = async () => {
         let { data } = await get_data("safeweb/preferences", 1);
 
         if (data) {
             setCheck(data);
+            setsettingsToCompare(data);
         }
     };
 
@@ -52,27 +55,45 @@ export default function PreferencesSafeweb() {
         }
     };
 
-    async function savePreferences(dataCheck) {
-        let  { data } = await put_data("safeweb/preferences", dataCheck);
-        //console.log(data);
+    async function savePreferences() {
+        let date = new Date().toISOString();
+        let comparation = compareObj(check, settingsToCompare);
 
-        if (data.result) {
+        if(comparation){
             Swal.fire({
                 position: "center",
-                icon: "success",
-                title: "Actualizacion exitosa!",
+                icon: "info",
+                title: "¡No hay cambios para guardar!",
                 showConfirmButton: false,
                 timer: 1500,
             });
         } else {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Actualizacion fallida!",
-                showConfirmButton: false,
-                timer: 1500,
+            setCheck({
+                ...check,
+                date: date,
             });
+
+            let  { data } = await put_data("safeweb/preferences", check);
+
+            if (data.result) {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Actualizacion exitosa!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } else {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Actualizacion fallida!",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
         }
+        setsettingsToCompare(check);
     }
 
     return (
@@ -211,7 +232,7 @@ export default function PreferencesSafeweb() {
                 </div>
             </div>
             <div className={`end-footer-body ${stylesPreferences.btnEnd}`}>
-                <Button onClick={() => savePreferences(check)} variant="dark">
+                <Button onClick={() => savePreferences()} variant="dark">
                     <i className="fas fa-save" style={{marginRight: "0.5rem" }}></i>
                     Guardar
                 </Button>
