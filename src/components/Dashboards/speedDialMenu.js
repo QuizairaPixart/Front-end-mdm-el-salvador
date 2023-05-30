@@ -14,6 +14,7 @@ import {
 import { Button } from 'primereact/button';
 import { post_data } from "../../actions/index";
 import Swal from "sweetalert2";
+import { popupSimple } from "../../components/generals/popups";
 import styles from "../../css/Dashboards/SpeedDialMenu.module.css";
 
 export default function SpeedDialMenu(props) {
@@ -53,23 +54,21 @@ export default function SpeedDialMenu(props) {
                 };
             
                 let response = await post_data("actions", [json]);
-                if ( (response.data.result === true)  && (!response.data.sendings.length !== 0) ){
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Acción realizada con éxito!",
-                        showConfirmButton: false,
-                        timer: 2000,
-                    });
+                if(props.type === "devices"){
+                    if ((response.data.result === true) && (Array.isArray(response.data.sendings)) && (response.data.sendings.length === 0)){
+                        popupSimple("success","Solicitud enviada con éxito!");
+                    } else if((response.data.result === true) && (Array.isArray(response.data.sendings)) && (response.data.sendings.length > 0)){
+                        popupSimple("success","Acción realizada con éxito!");
+                    } else {
+                        popupSimple("error","Error. No se pudo realizar la acción!");
+                    }
                 } else {
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: "Error. No se pudo realizar la acción!",
-                        showConfirmButton: false,
-                        timer: 2000,
-                    });
-                }
+                    if ((response.data.result === true)){
+                        popupSimple("success","Solicitud enviada con éxito!");
+                    } else {
+                        popupSimple("error","Error. No se pudo realizar la acción!");
+                    }
+                }   
             }
         });
     }
@@ -136,7 +135,8 @@ export default function SpeedDialMenu(props) {
                     hideIcon="pi pi-lock"
                     style={{top: "8rem"}}
                 />
-                <Button 
+                {props.type === "devices"? 
+                    <Button 
                     id="btnDial4"
                     icon="pi pi-th-large" 
                     severity="secondary" 
@@ -145,7 +145,9 @@ export default function SpeedDialMenu(props) {
                     style={{top: "12rem"}}
                     className={styles.btnApps}
                     onClick={()=>props.onHide("apps", true)}
-                />   
+                    />   
+                : <></>}
+                
             </div>
         </>
     );

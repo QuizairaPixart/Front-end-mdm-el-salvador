@@ -17,7 +17,6 @@ import DataTableLazy from "../../../components/generals/datatables/dataTableLazy
 import SpeedDialMenu from "../../../components/Dashboards/speedDialMenu";
 import ModalBackgroundChange from "../../../components/modals/modalBackgroundChange";
 import ModalContentDownload from "../../../components/modals/modalContentDownload";
-import ModalApps from "../../../components/modals/modalApps";
 
 export default function DashboardGroup() {
     let { user } = store.getState();
@@ -547,8 +546,8 @@ export default function DashboardGroup() {
                     title="Cambiar Fondo de Pantalla"
                     btnError="Cerrar"
                     btnSuccess="Enviar"
-                    group={[parseInt(id)]}
-                    devices={idsDevices}
+                    //group={[parseInt(id)]}
+                    //devices={idsDevices}
                     type="groups"
                 />
 
@@ -563,16 +562,6 @@ export default function DashboardGroup() {
                     // devices={idsDevices}
                     type="groups"
                 />
-
-                {/* MODAL APLICACIONES*/}
-
-                    <ModalApps
-                        show={modalsShow.apps}
-                        onHide={() => handleModal("apps", false)}
-                        //data={data.data.applications}
-                        type="groups"
-                    />
-
             </div>
         );
     }

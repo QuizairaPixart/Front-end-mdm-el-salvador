@@ -6,6 +6,7 @@ import "../../css/generals/paper.css";
 import styles from "../../css/modals/Modal.module.css";
 import Swal from "sweetalert2";
 import { post_data } from "../../actions/index";
+import { popupSimple } from "../../components/generals/popups";
 
 export default function ModalBackgroundChange(props) {
     const { id } = useParams();
@@ -66,22 +67,10 @@ export default function ModalBackgroundChange(props) {
                 setFiles(null);
                 closeModal();    
             } else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "El proceso no pudo ser completado!",
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+                popupSimple("error","El proceso no pudo ser completado!");
             }
         } else {
-            Swal.fire({
-                position: "center",
-                icon: "info",
-                title: "No se seleccionó ningún archivo!",
-                showConfirmButton: false,
-                timer: 1500,
-            });
+            popupSimple("info","No se seleccionó ningún archivo!");
         }
     };
 
@@ -97,28 +86,25 @@ export default function ModalBackgroundChange(props) {
                 type: "wallpaper"
             },
             date: new Date(Date.now()),
-            devicesId: props.type === "devices"? [parseInt(id)]: idsDevices,
+            devicesId: props.type === "devices"? [parseInt(id)]: [],
             groupsId: props.type === "groups"? [parseInt(id)]: [],
         };
 
         let response = await post_data("actions", [json]);
-
-        if ( (response.data.result === true)  && (!response.data.sendings.length !== 0)){
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Acción realizada con éxito!",
-                showConfirmButton: false,
-                timer: 2000,
-            });
+        if(props.type === "devices"){
+            if ((response.data.result === true) && (Array.isArray(response.data.sendings)) && (response.data.sendings.length === 0)){
+                popupSimple("success","Solicitud enviada con éxito!");
+            } else if((response.data.result === true) && (Array.isArray(response.data.sendings)) && (response.data.sendings.length > 0)){
+                popupSimple("success","Acción realizada con éxito!");
+            } else {
+                popupSimple("error","Error. No se pudo realizar la acción!");
+            };
         } else {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Error. No se pudo realizar la acción!",
-                showConfirmButton: false,
-                timer: 2000,
-            });
+            if ((response.data.result === true)){
+                popupSimple("success","Solicitud enviada con éxito!");
+            } else {
+                popupSimple("error","Error. No se pudo realizar la acción!");
+            }
         }
     }
 

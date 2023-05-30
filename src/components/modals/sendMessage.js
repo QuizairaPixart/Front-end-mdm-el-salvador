@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import ModalGeneric from "./modal";
+import { popupSimple } from "../../components/generals/popups";
 import $ from "jquery";
 import "../../css/generals/paper.css";
 
@@ -76,66 +77,33 @@ export default function SendMessages(props) {
             let response = await post_data("actions", [json]);
             if (props.type === "dashboard") {
                 if (
-                    response.data.result === true &&
-                    /* (Array.isArray(response.data.sendings) &&response.data.sendings.length>0) */
-                    response.data.sendings === false
+                    (response.data.result === true) && (Array.isArray(response.data.sendings)) && (response.data.sendings.length === 0)
                 ) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Solicitud de mensaje enviada con exito!",
-                        showConfirmButton: false,
-                        timer: 2000,
-                    });
+                    popupSimple("success","Solicitud enviada con éxito!");
                     setTimeout(() => {
                         $('#btnModalSucess').prop('disabled', false);
                     }, 1500);
                 } else if (
-                    response.data.result === true &&
-                    response.data.sendings.includes(parseInt(id))
+                    (response.data.result === true) && (Array.isArray(response.data.sendings)) && (response.data.sendings.length > 0) && (response.data.sendings.includes(parseInt(id)))
                 ) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Mensaje enviado con exito!",
-                        showConfirmButton: false,
-                        timer: 2000,
-                    });
+                    popupSimple("success","Acción realizada con éxito!");
                     setTimeout(() => {
                         $('#btnModalSucess').prop('disabled', false);
                     }, 1500);
                 } else {
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: "Error al enviar el mensaje!",
-                        showConfirmButton: false,
-                        timer: 2000,
-                    });
+                    popupSimple("error","Error. No se pudo realizar la acción!");
                     setTimeout(() => {
                         $('#btnModalSucess').prop('disabled', false);
                     }, 1500);
                 }
             } else {
                 if (response.data.result) {
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Solicitud de mensaje enviada con exito!",
-                        showConfirmButton: false,
-                        timer: 2000,
-                    });
+                    popupSimple("success","Solicitud enviada con éxito!");
                     setTimeout(() => {
                         $('#btnModalSucess').prop('disabled', false);
                     }, 1500);
                 } else {
-                    Swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: "Error al enviar el mensaje!",
-                        showConfirmButton: false,
-                        timer: 2000,
-                    });
+                    popupSimple("error","Error. No se pudo realizar la acción!");
                     setTimeout(() => {
                         $('#btnModalSucess').prop('disabled', false);
                     }, 1500);
@@ -143,13 +111,7 @@ export default function SendMessages(props) {
             }
             closeModal();
         } else {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Debe completar todos los campos!",
-                showConfirmButton: false,
-                timer: 1500,
-            });
+            popupSimple("error","Error. Debe completar todos los campos!");
             setTimeout(() => {
                 $('#btnModalSucess').prop('disabled', false);
             }, 1500);

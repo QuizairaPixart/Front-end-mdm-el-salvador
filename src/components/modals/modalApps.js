@@ -9,6 +9,7 @@ import Loading from "../generals/loading";
 import { Button } from "primereact/button";
 import Swal from "sweetalert2";
 import { post_data } from "../../actions/index.js";
+import { popupSimple } from "../../components/generals/popups";
 import $ from "jquery";
 
 export default function ModalApps(props) {
@@ -86,32 +87,16 @@ export default function ModalApps(props) {
             });
 
             let response = await post_data("actions", arrayApps);
-            if ( !response.data.length !== 0 ){
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Acción realizada con éxito!",
-                    showConfirmButton: false,
-                    timer: 2000,
-                });
+            if ((response.data.result === true) && (Array.isArray(response.data.sendings)) && (response.data.sendings.length === 0)){
+                popupSimple("success","Solicitud enviada con éxito!");
+            } else if((response.data.result === true) && (Array.isArray(response.data.sendings)) && (response.data.sendings.length > 0)){
+                popupSimple("success","Acción realizada con éxito!");
             } else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "Error. No se pudo realizar la acción!",
-                    showConfirmButton: false,
-                    timer: 2000,
-                });
+                popupSimple("error","Error. No se pudo realizar la acción!");
             }
             closeModal();
         } else {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Debe seleccionar las aplicaciones a desinstalar!",
-                showConfirmButton: false,
-                timer: 1500,
-            });
+            popupSimple("info","Debe seleccionar las aplicaciones a desinstalar!");
         }
     };
 
@@ -140,13 +125,7 @@ export default function ModalApps(props) {
         let f = new FormData();
 
         if(files === null){
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Debe seleccionar la aplicación a instalar!",
-                showConfirmButton: false,
-                timer: 1500,
-            });
+            popupSimple("info","Debe seleccionar la aplicación a instalar!");
         } else {
             for(let i=0; i<files.length; i++){
                 f.append("files", files[i]);
@@ -176,13 +155,7 @@ export default function ModalApps(props) {
                 installApps(url, splitUrl);
                 closeModal();    
             } else {
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "El proceso no pudo ser completado!",
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+                popupSimple("error","El proceso no pudo ser completado!");
             }
         }
     };
@@ -202,23 +175,12 @@ export default function ModalApps(props) {
         };
 
         let response = await post_data("actions", [json]);
-
-        if ( !response.data.length !== 0){
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Acción realizada con éxito!",
-                showConfirmButton: false,
-                timer: 2000,
-            });
+        if ((response.data.result === true) && (Array.isArray(response.data.sendings)) && (response.data.sendings.length === 0)){
+            popupSimple("success","Solicitud enviada con éxito!");
+        } else if((response.data.result === true) && (Array.isArray(response.data.sendings)) && (response.data.sendings.length > 0)){
+            popupSimple("success","Acción realizada con éxito!");
         } else {
-            Swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Error. No se pudo realizar la acción!",
-                showConfirmButton: false,
-                timer: 2000,
-            });
+            popupSimple("error","Error. No se pudo realizar la acción!");
         }
     }
 
