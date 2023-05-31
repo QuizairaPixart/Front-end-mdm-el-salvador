@@ -1,0 +1,14 @@
+.main_footer{
+    height: 2rem !important;
+    background-color: var(--dark-color);
+    color: white;
+    text-align: center;
+    padding: 1px;
+    position: absolute;
+    bottom: 0;
+    margin-top: 1rem;
+}
+
+.rights{
+    font-size: 12px;
+}

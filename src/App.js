@@ -20,8 +20,9 @@ import Users from "./views/Users/users";
 import Layout from "./layout/Layout";
 import Words from "./views/Safeweb/words";
 import PreferencesSafeweb from "./views/Safeweb/preferences";
-import Reports from "./views/Preferences/Reports/reportsPreferences";
+import PreferencesReports from "./views/Preferences/Reports/reportsPreferences";
 import LogOut from "./components/generals/logout";
+import Reports from "./views/Reports/reports";
 import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
 import "primereact/resources/primereact.min.css"; //core css
 import "primeicons/primeicons.css";
@@ -33,6 +34,7 @@ const App = () => {
         <div className="wrapper">
             <Routes>
                 <Route exact path="/" element={<Index />} />
+                <Route exact path="/reports" element={<Reports />} />
                 <Route path="/mdm" element={<LogOut component={Layout} />}>
                     <Route
                         index
@@ -89,7 +91,7 @@ const App = () => {
                     />
                     <Route
                         path="preferences/reports"
-                        element={<LogOut component={Reports} />}
+                        element={<LogOut component={PreferencesReports} />}
                     />
                     <Route
                         path="users"
