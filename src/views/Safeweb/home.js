@@ -6,7 +6,7 @@ import Loading from "../../components/generals/loading";
 import Line from "../../components/generals/charts/line";
 import "../../css/Safeweb/home.css";
 import Wanted from "../../components/SafeWeb/Wanted";
-import { currentAndPreviousDate } from "../../components/generals/charts/utils/DatesFormats.js"
+import { currentAndPreviousDate } from "../../components/generals/charts/utils/DatesFormats.js";
 
 
 export default function SafeWeb() {

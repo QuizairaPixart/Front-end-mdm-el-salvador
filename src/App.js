@@ -22,6 +22,7 @@ import Words from "./views/Safeweb/words";
 import PreferencesSafeweb from "./views/Safeweb/preferences";
 import PreferencesReports from "./views/Preferences/Reports/reportsPreferences";
 import LogOut from "./components/generals/logout";
+import DashReports from "./views/Reports/Dashboard/dashboard-reports";
 import Reports from "./views/Reports/reports";
 import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
 import "primereact/resources/primereact.min.css"; //core css
@@ -34,6 +35,7 @@ const App = () => {
         <div className="wrapper">
             <Routes>
                 <Route exact path="/" element={<Index />} />
+                <Route exact path="/dash-reports" element={<DashReports />} />
                 <Route exact path="/reports" element={<Reports />} />
                 <Route path="/mdm" element={<LogOut component={Layout} />}>
                     <Route

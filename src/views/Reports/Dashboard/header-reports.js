@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../css/reports/Reports.module.css";
+import styles from "../../../css/reports/Dash-reports.module.css";
 
 export default function HeaderReports() {
     return (

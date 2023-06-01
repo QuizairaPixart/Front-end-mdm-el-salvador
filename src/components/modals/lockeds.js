@@ -188,6 +188,7 @@ export default function LockedDevices(props) {
           await put_data("device", {
                 id: device.id,
                 motive_lock: device.motive_lock,
+                //status_lock: device.status_lock
             });
         } else {
             Swal.fire({
