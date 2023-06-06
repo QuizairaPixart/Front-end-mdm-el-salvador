@@ -22,7 +22,6 @@ import Words from "./views/Safeweb/words";
 import PreferencesSafeweb from "./views/Safeweb/preferences";
 import PreferencesReports from "./views/Preferences/Reports/reportsPreferences";
 import LogOut from "./components/generals/logout";
-import DashReports from "./views/Reports/Dashboard/dashboard-reports";
 import Reports from "./views/Reports/reports";
 import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
 import "primereact/resources/primereact.min.css"; //core css
@@ -31,98 +30,69 @@ import "./App.css";
 import "./css/globals.css";
 
 const App = () => {
-    return (
-        <div className="wrapper">
-            <Routes>
-                <Route exact path="/" element={<Index />} />
-                <Route exact path="/dash-reports" element={<DashReports />} />
-                <Route exact path="/reports" element={<Reports />} />
-                <Route path="/mdm" element={<LogOut component={Layout} />}>
-                    <Route
-                        index
-                        path="home"
-                        element={<LogOut component={Home} />}
-                    />
-                    <Route
-                        path="devices"
-                        element={<LogOut component={Devices} />}
-                    />
-                    <Route
-                        path="device/:id"
-                        element={<LogOut component={Dashboard} />}
-                    />
-                    <Route
-                        path="applications"
-                        element={<LogOut component={Applications} />}
-                    />
-                    <Route
-                        path="applications/manage"
-                        element={<LogOut component={ManageApps} />}
-                    />
-                    <Route
-                        path="applications/:id"
-                        element={<LogOut component={AppsDevice} />}
-                    />
-                    <Route
-                        path=":type/:id"
-                        element={<LogOut component={Ubications} />}
-                    />
-                    <Route
-                        path="gallery/:code"
-                        element={<LogOut component={Gallery} />}
-                    />
-                    <Route
-                        path="groups"
-                        element={<LogOut component={Groups} />}
-                    />
-                    <Route
-                        path="group/:id"
-                        element={<LogOut component={DashboardGroup} />}
-                    />
-                    <Route
-                        path="preferences/configs"
-                        element={<LogOut component={Configs} />}
-                    />
-                    <Route
-                        path="preferences/lost"
-                        element={<LogOut component={Locked} />}
-                    />
-                    <Route
-                        path="preferences/server"
-                        element={<LogOut component={Server} />}
-                    />
-                    <Route
-                        path="preferences/reports"
-                        element={<LogOut component={PreferencesReports} />}
-                    />
-                    <Route
-                        path="users"
-                        element={<LogOut component={Users} />}
-                    />
-                    <Route
-                        path="safeweb"
-                        element={<LogOut component={SafeWeb} />}
-                    />
-                    <Route
-                        path="safeweb/preferences"
-                        element={<LogOut component={PreferencesSafeweb} />}
-                    />
-                    <Route
-                        path="lists"
-                        element={<LogOut component={Listas} />}
-                    />
-                    <Route
-                        path="words"
-                        element={<LogOut component={Words} />}
-                    />
-                </Route>
-            </Routes>
-            {/* Control Sidebar */}
-            <aside className="control-sidebar control-sidebar-dark">
-                {/* Control sidebar content goes here */}
-            </aside>
-        </div>
-    );
+  return (
+    <div className="wrapper">
+      <Routes>
+        <Route exact path="/" element={<Index />} />
+        <Route exact path="/reports" element={<Reports />} />
+        <Route path="/mdm" element={<LogOut component={Layout} />}>
+          <Route index path="home" element={<LogOut component={Home} />} />
+          <Route path="devices" element={<LogOut component={Devices} />} />
+          <Route path="device/:id" element={<LogOut component={Dashboard} />} />
+          <Route
+            path="applications"
+            element={<LogOut component={Applications} />}
+          />
+          <Route
+            path="applications/manage"
+            element={<LogOut component={ManageApps} />}
+          />
+          <Route
+            path="applications/:id"
+            element={<LogOut component={AppsDevice} />}
+          />
+          <Route path=":type/:id" element={<LogOut component={Ubications} />} />
+          <Route
+            path="gallery/:code"
+            element={<LogOut component={Gallery} />}
+          />
+          <Route path="groups" element={<LogOut component={Groups} />} />
+          <Route
+            path="group/:id"
+            element={<LogOut component={DashboardGroup} />}
+          />
+          <Route
+            path="preferences/configs"
+            element={<LogOut component={Configs} />}
+          />
+          <Route
+            path="preferences/lost"
+            element={<LogOut component={Locked} />}
+          />
+          <Route
+            path="preferences/server"
+            element={<LogOut component={Server} />}
+          />
+          <Route
+            path="preferences/reports"
+            element={<LogOut component={PreferencesReports} />}
+          />
+          <Route path="users" element={<LogOut component={Users} />} />
+          <Route path="safeweb" element={<LogOut component={SafeWeb} />} />
+          <Route
+            path="safeweb/preferences"
+            element={<LogOut component={PreferencesSafeweb} />}
+          />
+          <Route path="lists" element={<LogOut component={Listas} />} />
+          <Route path="words" element={<LogOut component={Words} />} />
+        </Route>
+      </Routes>
+      {/* Control Sidebar */}
+      <aside className="control-sidebar control-sidebar-dark">
+        {/* Control sidebar content goes here */}
+      </aside>
+    </div>
+  );
 };
 
 export default App;
